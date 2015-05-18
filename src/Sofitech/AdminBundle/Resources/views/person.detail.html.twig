@@ -1,0 +1,30 @@
+
+	<h1>{% block personetype %}{% endblock %}</h1>
+    <div class="col-md-5">
+        <table class="table">
+            <tr>
+                <th>Nom</th>
+                <td>{{ entity.firstname }}</td>
+            </tr>
+            <tr>
+                <th>Prénom</th>
+                <td>{{ entity.lastname }}</td>
+            </tr>
+            <tr>
+                <th>Mail</th>
+                <td>{{ entity.email }}</td>
+            </tr>
+            <tr>
+                <th>Sexe</th>
+                <td>{{ entity.gender }}</td>
+            </tr>   
+            <tr>
+                <th>Date de naissance</th>
+                <td>{{ entity.birthdate|date("d/m/Y") }}</td>
+            </tr>  
+             {% block personatttibuttr %}{% endblock %}
+        </table>
+    </div>
+    <div class="col-md-8">
+    {% block personaction %}{% endblock %}
+    </div>

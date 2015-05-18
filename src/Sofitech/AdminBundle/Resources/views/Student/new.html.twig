@@ -1,0 +1,28 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Ajouter étudiant</h1>
+{{ form_start(form) }}
+
+    <div class="form-horizontal">
+        {% for item in form if item.vars['name'] != '_token' %}
+            <div class="form-group">
+                <div class="col-md-2">
+                    {{ form_label(item) }}
+                </div>
+                <div class="col-md-4">
+                    {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+                </div>
+            </div>
+        {% endfor %}
+
+        {{ form_widget(form._token) }}
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+    </div>
+{{ form_end(form) }}   
+<ul class="list-unstyled">
+    <li>
+        <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
+    </li>
+</ul>
+{% endblock %}

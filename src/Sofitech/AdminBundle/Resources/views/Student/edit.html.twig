@@ -1,0 +1,30 @@
+{% extends '::base.html.twig' %}
+
+{% block body -%}
+    <h1>Modifier étudiant</h1>
+
+    {{ form_start(edit_form) }}
+    <div class="form-horizontal">
+    	{% for item in edit_form if item.vars['name'] != '_token' %}
+    		<div class="form-group">
+    			<div class="col-md-2">
+    				{{ form_label(item) }}
+    			</div>
+    			<div class="col-md-4">
+    				{{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+    			</div>
+    		</div>
+    {% endfor %}
+
+    {{ form_widget(edit_form._token) }}
+	<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</button>
+	</div>
+	{{ form_end(edit_form) }}   
+
+    {{ form_start(delete_form) }}
+		<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+    {{ form_end(delete_form) }}
+
+     <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
+
+{% endblock %}
