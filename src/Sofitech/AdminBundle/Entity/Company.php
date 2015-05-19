@@ -3,6 +3,7 @@
 namespace Sofitech\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Company
@@ -35,7 +36,7 @@ class Company
     private $adresses;
 
     public function __construct(){
-        $this->adresses = new \Doctrine\common\Collections\ArrayCollection();
+        $this->adresses = new ArrayCollection();
     }
 
 

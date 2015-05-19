@@ -10,6 +10,9 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sofitech\AdminBundle\Entity\Student;
 use Sofitech\AdminBundle\Form\StudentType;
 
+use Sofitech\AdminBundle\Entity\Adress;
+use Sofitech\AdminBundle\Form\AdressType;
+
 /**
  * Student controller.
  *

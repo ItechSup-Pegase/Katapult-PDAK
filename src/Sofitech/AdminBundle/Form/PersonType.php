@@ -22,12 +22,26 @@ class PersonType extends AbstractType
 
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+       
         $builder
-            ->add('lastname')
-            ->add('firstname')
-            ->add('email')
-            ->add('gender')
-            ->add('birthdate');
+            ->add('gender', 'choice', array('label' => 'Civilité', 'choices' => array('m' => 'M.', 'mme' => 'Mme')))
+            ->add('lastname', 'text', array('label' => 'Nom'))
+            ->add('firstname', 'text' , array('label' => 'Prénom'))
+            ->add('email', 'email', array('label' => 'Mail'))
+            ->add('birthdate', 'date', 
+                    array(
+                        'label' => 'Date de naissance',
+                        'widget' => 'single_text', 
+                        'format' => 'dd-MM-yyyy',
+                        'attr' => array('placeholder' => 'jj/mm/aaaa'))
+                )
+            ->add('adress', 'collection', array(
+                'type' => new AdressType(),
+                'allow_add' => true,
+                'allow_delete' => true
+                ))
+            ;
+
     }
 
 

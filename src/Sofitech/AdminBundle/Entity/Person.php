@@ -61,8 +61,9 @@ class Person
     protected $birthdate;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Adress", inversedBy="persons") 
+     * @ORM\ManyToMany(targetEntity="Adress", inversedBy="persons",cascade={"persist"}) 
      * @ORM\JoinTable(name="persons_adresses")
+     *
      */
     protected $adresses;
 
@@ -203,7 +204,7 @@ class Person
      */
     public function setAdress($adress)
     {
-        $this->adress = $adress;
+        $this->adresses = $adress;
 
         return $this;
     }
@@ -215,6 +216,6 @@ class Person
      */
     public function getAdress()
     {
-        return $this->adress;
+        return $this->adresses;
     }
 }

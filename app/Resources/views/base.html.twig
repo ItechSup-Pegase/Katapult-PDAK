@@ -14,10 +14,12 @@
         
         
         <div class="container">{% block body %}{% endblock %}</div>
-        {% block javascripts %}{% endblock %}
+        {% block otherjavascripts %}{% endblock %}
         {% javascripts %}
             <script src="{{ asset('bundles/sofitechadmin/bootstrap/js/bootstrap.min.js') }}"></script>
+
         {% endjavascripts %}
+
 
     </body>
 </html>

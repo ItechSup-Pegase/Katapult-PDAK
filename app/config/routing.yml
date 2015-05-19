@@ -6,3 +6,11 @@ student:
     resource: "@SofitechAdminBundle/Controller/StudentController.php"
     type: "annotation"
 
+adress:
+    resource: "@SofitechAdminBundle/Controller/AdressController.php"
+    type: "annotation"
+
+company:
+    resource: "@SofitechAdminBundle/Controller/CompanyController.php"
+    type: "annotation"
+

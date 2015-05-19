@@ -19,7 +19,6 @@ class Student extends Person
      */
     protected $id;
 
-
     /**
      * Get id
      *

@@ -3,6 +3,7 @@
 namespace Sofitech\AdminBundle\Entity;
 
 use Doctrine\ORM\Mapping as ORM;
+use Doctrine\Common\Collections\ArrayCollection;
 
 /**
  * Adress
@@ -58,6 +59,7 @@ class Adress
 
     /**
      * @ORM\ManyToMany(targetEntity="Person", mappedBy="adresses")
+     * cascade={"persist"}
      */
     private $persons;
 
@@ -67,8 +69,8 @@ class Adress
     private $companies;
 
     public function __construct(){
-        $this->persons = new \Doctrine\common\Collections\ArrayCollection();
-        $this->companies = new \Doctrine\common\Collections\ArrayCollection();
+        $this->persons = new ArrayCollection();
+        $this->companies = new ArrayCollection();
     }
 
 
@@ -195,6 +197,30 @@ class Adress
     public function getCountry()
     {
         return $this->country;
+    }
+
+
+    /**
+     * Set persons
+     *
+     * @param string $persons
+     * @return Adress
+     */
+    public function setPersons($person)
+    {
+        $this->persons = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get persons
+     *
+     * @return \stdClass 
+     */
+    public function getPersons()
+    {
+        return $this->persons;
     }
 
 }
