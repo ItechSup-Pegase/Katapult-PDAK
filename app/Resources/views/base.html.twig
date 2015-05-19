@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8" />
+        <title>{% block title %}Welcome!{% endblock %}</title>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        {% block stylesheets %}{% endblock %}
+        <link rel="icon" type="image/x-icon" href="{{ asset('favicon.ico') }}" />
+        <link rel="stylesheet" href="{{ asset('bundles/sofitechadmin/bootstrap/css/bootstrap.css') }}" />
+    </head>
+    <body>
+        
+        
+        <div class="container">{% block body %}{% endblock %}</div>
+        {% block javascripts %}{% endblock %}
+        {% javascripts %}
+            <script src="{{ asset('bundles/sofitechadmin/bootstrap/js/bootstrap.min.js') }}"></script>
+        {% endjavascripts %}
+
+    </body>
+</html>

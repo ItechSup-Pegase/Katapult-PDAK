@@ -1,0 +1,8 @@
+sofitech_admin:
+    resource: "@SofitechAdminBundle/Resources/config/routing.yml"
+    prefix:   /
+
+student:
+    resource: "@SofitechAdminBundle/Controller/StudentController.php"
+    type: "annotation"
+
