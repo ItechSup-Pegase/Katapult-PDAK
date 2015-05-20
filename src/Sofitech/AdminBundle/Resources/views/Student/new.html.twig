@@ -3,14 +3,13 @@
 {% block body -%}
     <h1>Ajouter étudiant</h1>
 {{ form_start(form) }}
-
-    <div class="form-horizontal">
+    <div class="form-horizontal col-md-6">
         {% for item in form if item.vars['name'] != '_token' and item.vars['name'] != 'adress' %}
             <div class="form-group">
-                <div class="col-md-2">
+                <div class="col-md-4">
                     {{ form_label(item) }}
                 </div>
-                <div class="col-md-4">
+                <div class="col-md-7">
                     {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
                 </div>
             </div>
@@ -19,7 +18,7 @@
         {{ form_widget(form._token) }}
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>
     </div>
-{{ form_end(form) }}  
+{{ form_end(form) }}
 <ul class="list-unstyled">
     <li>
         <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
@@ -35,9 +34,11 @@
   $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#sofitech_adminbundle_student_adress');
+    $container.addClass("col-md-5 pull-right");
+
 
     // On ajoute un lien pour ajouter une nouvelle catégorie
-    var $addLink = $('<a href="#" id="add_category" class="btn btn-default">Ajouter une catégorie</a>');
+    var $addLink = $('<a href="#" id="add_category" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter une adresse</a>');
     $container.append($addLink);
 
     // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
