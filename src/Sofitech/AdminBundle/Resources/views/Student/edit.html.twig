@@ -1,16 +1,24 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 
+{% block leftmenu %}
+       <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>     
+       {{ form_start(delete_form) }}
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
+    {{ form_end(delete_form) }}
+{% endblock %}
+
+
 {% block content %}
     <h1>Modifier étudiant</h1>
 
     {{ form_start(edit_form) }}
-    <div class="form-horizontal">
-    	{% for item in edit_form if item.vars['name'] != '_token' %}
+    <div class="form-horizontal col-md-6">
+    	{% for item in edit_form if item.vars['name'] != '_token' and item.vars['name'] != 'adress' %}
     		<div class="form-group">
-    			<div class="col-md-2">
+    			<div class="col-md-4">
     				{{ form_label(item) }}
     			</div>
-    			<div class="col-md-4">
+    			<div class="col-md-7">
     				{{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
     			</div>
     		</div>
@@ -21,10 +29,99 @@
 	</div>
 	{{ form_end(edit_form) }}   
 
-    {{ form_start(delete_form) }}
-		<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
-    {{ form_end(delete_form) }}
+    
 
-     <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
 
 {% endblock %}
+
+
+{% block otherjavascripts %} 
+<script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+
+{# Voici le script en question : #}
+<script type="text/javascript">
+  $(document).ready(function() {
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div#sofitech_adminbundle_student_adress');
+    $container.addClass("col-md-6");
+
+
+    // On ajoute un lien pour ajouter une nouvelle catégorie
+    var $addLink = $('<a href="#" id="add_category" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter une adresse</a>');
+    
+
+    // On ajoute un nouveau champ à chaque clic sur le lien d'ajout.
+    $addLink.click(function(e) {
+      addCategory($container);
+      e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+      return false;
+    });
+
+    // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
+    var index = $container.find(':input').length;
+
+    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
+    if (index == 0) {
+      addCategory($container);
+    } else {
+      // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
+      $container.children('div').each(function() {
+        addDeleteLink($(this));
+      });
+    }
+
+    // La fonction qui ajoute un formulaire Categorie
+    function addCategory($container) {
+      // Dans le contenu de l'attribut « data-prototype », on remplace :
+      // - le texte "__name__label__" qu'il contient par le label du champ
+      // - le texte "__name__" qu'il contient par le numéro du champ
+      var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Adresse n°' + (index+1))
+          .replace(/__name__/g, index));
+
+      console.log($prototype);
+
+      // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
+      addDeleteLink($prototype);
+
+      // On ajoute le prototype modifié à la fin de la balise <div>
+      $container.append($prototype);
+
+      // On applique les class css de bootstrap
+      $('#sofitech_adminbundle_student_adress_'+index).addClass("form-horizontal");
+      $('#sofitech_adminbundle_student_adress_'+index).children('div').addClass('form-group myform_'+index);
+
+      $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
+      $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+      $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+      $('div:not([class])').find('label').first().hide();
+      $('div:not([class])').find('label').eq(1).hide();
+  
+      
+      $container.append($addLink);
+      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
+      index++;
+    }
+    
+    // La fonction qui ajoute un lien de suppression d'une catégorie
+    function addDeleteLink($prototype) {
+      // Création du lien
+      $deleteLink = $('<a href="#" class="btn btn-danger">Supprimer</a>');
+
+      // Ajout du lien
+      $prototype.append($deleteLink);
+
+      // Ajout du listener sur le clic du lien
+      $deleteLink.click(function(e) {
+        $prototype.remove();
+        index--;
+        e.preventDefault(); // évite qu'un # apparaisse dans l'URL
+        return false;
+      });
+    }
+  });
+</script>
+
+
+{% endblock %}
+
+

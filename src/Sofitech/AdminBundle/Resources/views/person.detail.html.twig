@@ -1,5 +1,6 @@
 
 	<h1>{% block personetype %}{% endblock %}</h1>
+    {{ dump(entity) }}
     <div class="col-md-5">
         <table class="table">
             <tr>
@@ -8,7 +9,7 @@
             </tr>
             <tr>
                 <th>Prénom</th>
-                <td>{{ entity.lastname }}</td>
+                <td>{{ entity.getLastname() }}</td>
             </tr>
             <tr>
                 <th>Mail</th>
@@ -21,8 +22,8 @@
             <tr>
                 <th>Date de naissance</th>
                 <td>{{ entity.birthdate|date("d/m/Y") }}</td>
-            </tr>  
-             {% block personatttibuttr %}{% endblock %}
+            </tr> 
+            {% block personatttibuttr %}{% endblock %}
         </table>
     </div>
     <div class="col-md-8">
