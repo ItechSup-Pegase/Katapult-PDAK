@@ -36,6 +36,7 @@ class PersonType extends AbstractType
                         'attr' => array('placeholder' => 'jj/mm/aaaa'))
                 )
             ->add('adress', 'collection', array(
+                'label' => 'Adresse',
                 'type' => new AdressType(),
                 'allow_add' => true,
                 'allow_delete' => true
