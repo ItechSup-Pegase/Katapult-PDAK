@@ -69,11 +69,19 @@
       var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Adresse n°' + (index+1))
           .replace(/__name__/g, index));
 
+      console.log($prototype);
+
       // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
       addDeleteLink($prototype);
 
       // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
+      $('#sofitech_adminbundle_student_adress_'+index).addClass("form-horizontal");
+      $('#sofitech_adminbundle_student_adress_'+index).children('div').addClass('form-group');
+
+
+
+
 
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
