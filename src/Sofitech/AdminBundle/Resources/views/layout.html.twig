@@ -2,9 +2,11 @@
 
 {% block body %}
     <div class="col-md-2">
-    {% block leftmenu %}{% endblock %}
+        <h3>Menu</h3>
+        {% block leftmenu %}{% endblock %}
     </div>
+
     <div class="col-md-10">
-	{% block content %}{% endblock %}
+        {% block content %}{% endblock %}
     </div >
 {% endblock %}

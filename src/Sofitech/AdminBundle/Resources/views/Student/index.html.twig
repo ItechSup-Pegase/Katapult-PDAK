@@ -1,6 +1,10 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 
-{% block content -%}
+{% block leftmenu %}
+    <a href="{{ path('student_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un étudiant</a>
+{% endblock %}
+
+{% block content %}
     <div class="col-md-12">
         <h1>Liste des étudiants</h1>
 
@@ -30,12 +34,6 @@
             {% endfor %}
             </tbody>
         </table>
-
-            <ul class="list-unstyled">
-            <li>
-                <a href="{{ path('student_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un étudiant</a>
-            </li>
-        </ul>
     </div>
 {% endblock %}
 
