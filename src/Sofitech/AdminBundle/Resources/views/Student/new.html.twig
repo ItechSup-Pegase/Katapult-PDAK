@@ -1,10 +1,9 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Ajouter étudiant</h1>
-<div class="col-md-2">
+{% extends 'SofitechAdminBundle::layout.html.twig' %}
+{% block leftmenu %}
     <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
-</div>
+{% endblock %}
+{% block content -%}
+    <h1>Ajouter étudiant</h1>
 {{ form_start(form) }}
     <div class="form-horizontal col-md-4">
         {% for item in form if item.vars['name'] != '_token' and item.vars['name'] != 'adress' %}
