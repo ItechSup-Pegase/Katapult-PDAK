@@ -24,7 +24,7 @@
     		</div>
     {% endfor %}
 
-    {{ form_widget(edit_form._token) }}
+  {{ form_widget(edit_form._token) }}
 	<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</button>
 	</div>
 	{{ form_end(edit_form) }}   
@@ -59,6 +59,8 @@
 
     // On définit un compteur unique pour nommer les champs qu'on va ajouter dynamiquement
     var index = $container.find(':input').length;
+    console.log('index : '+index);
+
 
     // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
     if (index == 0) {
@@ -67,6 +69,18 @@
       // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
       $container.children('div').each(function() {
         addDeleteLink($(this));
+        $(this).children('div').addClass("form-horizontal");
+        $('div:not([class])').find('label').first().hide();
+        $(this).children('label').remove();
+        $(this).children('div').children('div').addClass('form-group');
+
+        $(this).find("label").wrap('<div class="col-md-4" ></div>');
+        $(this).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+        $(this).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+        // $(this).find('label').first().hide();
+        // $(this).find('label').eq(1).hide();
+
+        $container.append($addLink);
       });
     }
 
@@ -77,8 +91,6 @@
       // - le texte "__name__" qu'il contient par le numéro du champ
       var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Adresse n°' + (index+1))
           .replace(/__name__/g, index));
-
-      console.log($prototype);
 
       // On ajoute au prototype un lien pour pouvoir supprimer la catégorie
       addDeleteLink($prototype);
@@ -100,7 +112,9 @@
       $container.append($addLink);
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
+
     }
+
     
     // La fonction qui ajoute un lien de suppression d'une catégorie
     function addDeleteLink($prototype) {
@@ -118,6 +132,8 @@
         return false;
       });
     }
+
+
   });
 </script>
 
