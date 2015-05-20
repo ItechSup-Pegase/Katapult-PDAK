@@ -70,16 +70,13 @@
       $container.children('div').each(function() {
         addDeleteLink($(this));
         $(this).children('div').addClass("form-horizontal");
-        $('div:not([class])').find('label').first().hide();
-        $(this).children('label').remove();
+        $('div:not([class])').find('label').first().remove();
+        $(this).children('label').hide();
         $(this).children('div').children('div').addClass('form-group');
 
-        $(this).find("label").wrap('<div class="col-md-4" ></div>');
+        $(this).find("label:not(:first)").wrap('<div class="col-md-4" ></div>');
         $(this).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
         $(this).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-        // $(this).find('label').first().hide();
-        // $(this).find('label').eq(1).hide();
-
         $container.append($addLink);
       });
     }
@@ -105,8 +102,8 @@
       $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
       $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
       $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-      $('div:not([class])').find('label').first().hide();
-      $('div:not([class])').find('label').eq(1).hide();
+      // $('div:not([class])').find('label').first().hide();
+      // $('div:not([class])').find('label').eq(1).hide();
   
       
       $container.append($addLink);
