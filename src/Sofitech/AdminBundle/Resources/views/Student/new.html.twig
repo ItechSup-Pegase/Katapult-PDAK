@@ -76,11 +76,15 @@
 
       // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
+
+      // On applique les class css de bootstrap
       $('#sofitech_adminbundle_student_adress_'+index).addClass("form-horizontal");
-      $('#sofitech_adminbundle_student_adress_'+index).children('div').addClass('form-group');
+      $('#sofitech_adminbundle_student_adress_'+index).children('div').addClass('form-group myform_'+index);
 
-
-
+      $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
+      $('.myform_'+index).find("input").wrap('<div class="col-md-5" ></div>').addClass('form-control');
+      $('.myform_'+index).find("select").wrap('<div class="col-md-5" ></div>').addClass('form-control');
+  
 
 
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
