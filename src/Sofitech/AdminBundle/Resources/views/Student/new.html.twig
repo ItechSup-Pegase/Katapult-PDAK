@@ -1,6 +1,9 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 {% block leftmenu %}
-    <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
+    <div class="container">
+       <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a> 
+    </div>
+    
 {% endblock %}
 {% block content -%}
     <h1>Ajouter étudiant</h1>
