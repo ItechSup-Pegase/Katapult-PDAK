@@ -14,11 +14,9 @@
         
         
         <div class="container">{% block body %}{% endblock %}</div>
-        {% block otherjavascripts %}{% endblock %}
-        {% javascripts %}
             <script src="{{ asset('bundles/sofitechadmin/bootstrap/js/bootstrap.min.js') }}"></script>
-
-        {% endjavascripts %}
+            <script src="{{ asset('bundles/sofitechadmin/js/jquery.min.js') }}"></script>
+        {% block otherjavascripts %}{% endblock %}
 
 
     </body>

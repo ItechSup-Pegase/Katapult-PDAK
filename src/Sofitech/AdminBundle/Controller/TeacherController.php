@@ -7,26 +7,21 @@ use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Method;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
-use Sofitech\AdminBundle\Entity\Student;
-use Sofitech\AdminBundle\Form\StudentType;
-
-use Sofitech\AdminBundle\Entity\Adress;
-use Sofitech\AdminBundle\Entity\PersonRepository;
-
-use Sofitech\AdminBundle\Form\AdressType;
+use Sofitech\AdminBundle\Entity\Teacher;
+use Sofitech\AdminBundle\Form\TeacherType;
 
 /**
- * Student controller.
+ * Teacher controller.
  *
- * @Route("/student")
+ * @Route("/teacher")
  */
-class StudentController extends Controller
+class TeacherController extends Controller
 {
 
     /**
-     * Lists all Student entities.
+     * Lists all Teacher entities.
      *
-     * @Route("/", name="student")
+     * @Route("/", name="teacher")
      * @Method("GET")
      * @Template()
      */
@@ -34,22 +29,22 @@ class StudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entities = $em->getRepository('SofitechAdminBundle:Student')->findAll();
+        $entities = $em->getRepository('SofitechAdminBundle:Teacher')->findAll();
 
         return array(
             'entities' => $entities,
         );
     }
     /**
-     * Creates a new Student entity.
+     * Creates a new Teacher entity.
      *
-     * @Route("/", name="student_create")
+     * @Route("/", name="teacher_create")
      * @Method("POST")
-     * @Template("SofitechAdminBundle:Student:new.html.twig")
+     * @Template("SofitechAdminBundle:Teacher:new.html.twig")
      */
     public function createAction(Request $request)
     {
-        $entity = new Student();
+        $entity = new Teacher();
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -58,7 +53,7 @@ class StudentController extends Controller
             $em->persist($entity);
             $em->flush();
 
-            return $this->redirect($this->generateUrl('student_show', array('id' => $entity->getId())));
+            return $this->redirect($this->generateUrl('teacher_show', array('id' => $entity->getId())));
         }
 
         return array(
@@ -68,32 +63,34 @@ class StudentController extends Controller
     }
 
     /**
-     * Creates a form to create a Student entity.
+     * Creates a form to create a Teacher entity.
      *
-     * @param Student $entity The entity
+     * @param Teacher $entity The entity
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Student $entity)
+    private function createCreateForm(Teacher $entity)
     {
-        $form = $this->createForm(new StudentType(), $entity, array(
-            'action' => $this->generateUrl('student_create'),
+        $form = $this->createForm(new TeacherType(), $entity, array(
+            'action' => $this->generateUrl('teacher_create'),
             'method' => 'POST',
         ));
-        
+
+        $form->add('submit', 'submit', array('label' => 'Create'));
+
         return $form;
     }
 
     /**
-     * Displays a form to create a new Student entity.
+     * Displays a form to create a new Teacher entity.
      *
-     * @Route("/new", name="student_new")
+     * @Route("/new", name="teacher_new")
      * @Method("GET")
      * @Template()
      */
     public function newAction()
     {
-        $entity = new Student();
+        $entity = new Teacher();
         $form   = $this->createCreateForm($entity);
 
         return array(
@@ -103,9 +100,9 @@ class StudentController extends Controller
     }
 
     /**
-     * Finds and displays a Student entity.
+     * Finds and displays a Teacher entity.
      *
-     * @Route("/{id}", name="student_show")
+     * @Route("/{id}", name="teacher_show")
      * @Method("GET")
      * @Template()
      */
@@ -113,16 +110,13 @@ class StudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SofitechAdminBundle:Person')->findWithAdresses($id);
+        $entity = $em->getRepository('SofitechAdminBundle:Teacher')->find($id);
+
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Student entity.');
+            throw $this->createNotFoundException('Unable to find Teacher entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
-        //$template = $twig->loadTemplate('content.person.show.html.twig');
-
-        // dump($entity);
 
         return array(
             'entity'      => $entity,
@@ -131,9 +125,9 @@ class StudentController extends Controller
     }
 
     /**
-     * Displays a form to edit an existing Student entity.
+     * Displays a form to edit an existing Teacher entity.
      *
-     * @Route("/{id}/edit", name="student_edit")
+     * @Route("/{id}/edit", name="teacher_edit")
      * @Method("GET")
      * @Template()
      */
@@ -141,10 +135,10 @@ class StudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SofitechAdminBundle:Student')->find($id);
+        $entity = $em->getRepository('SofitechAdminBundle:Teacher')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Student entity.');
+            throw $this->createNotFoundException('Unable to find Teacher entity.');
         }
 
         $editForm = $this->createEditForm($entity);
@@ -158,38 +152,38 @@ class StudentController extends Controller
     }
 
     /**
-    * Creates a form to edit a Student entity.
+    * Creates a form to edit a Teacher entity.
     *
-    * @param Student $entity The entity
+    * @param Teacher $entity The entity
     *
     * @return \Symfony\Component\Form\Form The form
     */
-    private function createEditForm(Student $entity)
+    private function createEditForm(Teacher $entity)
     {
-        $form = $this->createForm(new StudentType(), $entity, array(
-            'action' => $this->generateUrl('student_update', array('id' => $entity->getId())),
+        $form = $this->createForm(new TeacherType(), $entity, array(
+            'action' => $this->generateUrl('teacher_update', array('id' => $entity->getId())),
             'method' => 'PUT',
         ));
 
-        // $form->add('submit', 'submit', array('label' => 'Modifier'));
+        $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
     /**
-     * Edits an existing Student entity.
+     * Edits an existing Teacher entity.
      *
-     * @Route("/{id}", name="student_update")
+     * @Route("/{id}", name="teacher_update")
      * @Method("PUT")
-     * @Template("SofitechAdminBundle:Student:edit.html.twig")
+     * @Template("SofitechAdminBundle:Teacher:edit.html.twig")
      */
     public function updateAction(Request $request, $id)
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SofitechAdminBundle:Student')->find($id);
+        $entity = $em->getRepository('SofitechAdminBundle:Teacher')->find($id);
 
         if (!$entity) {
-            throw $this->createNotFoundException('Unable to find Student entity.');
+            throw $this->createNotFoundException('Unable to find Teacher entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
@@ -199,7 +193,7 @@ class StudentController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('student_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('teacher_edit', array('id' => $id)));
         }
 
         return array(
@@ -209,9 +203,9 @@ class StudentController extends Controller
         );
     }
     /**
-     * Deletes a Student entity.
+     * Deletes a Teacher entity.
      *
-     * @Route("/{id}", name="student_delete")
+     * @Route("/{id}", name="teacher_delete")
      * @Method("DELETE")
      */
     public function deleteAction(Request $request, $id)
@@ -221,21 +215,21 @@ class StudentController extends Controller
 
         if ($form->isValid()) {
             $em = $this->getDoctrine()->getManager();
-            $entity = $em->getRepository('SofitechAdminBundle:Student')->find($id);
+            $entity = $em->getRepository('SofitechAdminBundle:Teacher')->find($id);
 
             if (!$entity) {
-                throw $this->createNotFoundException('Unable to find Student entity.');
+                throw $this->createNotFoundException('Unable to find Teacher entity.');
             }
 
             $em->remove($entity);
             $em->flush();
         }
 
-        return $this->redirect($this->generateUrl('student'));
+        return $this->redirect($this->generateUrl('teacher'));
     }
 
     /**
-     * Creates a form to delete a Student entity by id.
+     * Creates a form to delete a Teacher entity by id.
      *
      * @param mixed $id The entity id
      *
@@ -244,13 +238,9 @@ class StudentController extends Controller
     private function createDeleteForm($id)
     {
         return $this->createFormBuilder()
-            ->setAction($this->generateUrl('student_delete', array('id' => $id)))
+            ->setAction($this->generateUrl('teacher_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            // ->add('button', 'submit', 
-            //     array(
-            //         'label' => 'Delete', 
-            //         'attr' => array('class' => 'btn btn-default btn-default ')
-            //     ))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

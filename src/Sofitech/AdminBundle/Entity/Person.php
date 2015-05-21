@@ -8,7 +8,7 @@ use Doctrine\Common\Collections\ArrayCollection;
 /**
  * Person
  *
- * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sofitech\AdminBundle\Entity\PersonRepository")
  * @ORM\InheritanceType("JOINED")
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"student" = "Student", "teacher" = "Teacher", "customer" = "Customer"})
@@ -215,6 +215,39 @@ class Person
      * @return \stdClass 
      */
     public function getAdress()
+    {
+        return $this->adresses;
+    }
+
+    /**
+     * Add adresses
+     *
+     * @param \Sofitech\AdminBundle\Entity\Adress $adresses
+     * @return Person
+     */
+    public function addAdress(\Sofitech\AdminBundle\Entity\Adress $adresses)
+    {
+        $this->adresses[] = $adresses;
+
+        return $this;
+    }
+
+    /**
+     * Remove adresses
+     *
+     * @param \Sofitech\AdminBundle\Entity\Adress $adresses
+     */
+    public function removeAdress(\Sofitech\AdminBundle\Entity\Adress $adresses)
+    {
+        $this->adresses->removeElement($adresses);
+    }
+
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getAdresses()
     {
         return $this->adresses;
     }

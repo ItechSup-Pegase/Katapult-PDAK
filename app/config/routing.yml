@@ -14,3 +14,12 @@ company:
     resource: "@SofitechAdminBundle/Controller/CompanyController.php"
     type: "annotation"
 
+teacher:
+    resource: "@SofitechAdminBundle/Controller/TeacherController.php"
+    type: "annotation"
+
+category:
+    resource: "@SofitechAdminBundle/Controller/CategoryController.php"
+    type: "annotation"
+
+

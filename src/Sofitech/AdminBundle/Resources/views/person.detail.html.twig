@@ -1,6 +1,6 @@
 
+    {% block leftmenu %}{% endblock %}
 	<h1>{% block personetype %}{% endblock %}</h1>
-    {{ dump(entity) }}
     <div class="col-md-5">
         <table class="table">
             <tr>
@@ -23,9 +23,10 @@
                 <th>Date de naissance</th>
                 <td>{{ entity.birthdate|date("d/m/Y") }}</td>
             </tr> 
-            {% block personatttibuttr %}{% endblock %}
+
+            {% for adress in entity.adresses %}
+                {{ include('SofitechAdminBundle:Adress:detail.html.twig', { 'entity': adress }) }}
+            {% endfor %}
+
         </table>
-    </div>
-    <div class="col-md-8">
-    {% block personaction %}{% endblock %}
     </div>

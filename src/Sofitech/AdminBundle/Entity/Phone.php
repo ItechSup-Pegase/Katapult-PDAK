@@ -20,7 +20,7 @@ class Phone
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var \stdClass
@@ -28,7 +28,7 @@ class Phone
      * @ORM\ManyToOne(targetEntity="Person")
      * @ORM\JoinColumn(name="person_id", referencedColumnName="id")
      */
-    private $person;
+    protected $person;
     
 
     /**
@@ -36,7 +36,7 @@ class Phone
      *
      * @ORM\Column(name="phone", type="string", length=255)
      */
-    private $phone;
+    protected $phone;
 
     /**
      * Get id
@@ -69,5 +69,28 @@ class Phone
     public function getPhone()
     {
         return $this->phone;
+    }
+
+    /**
+     * Set person
+     *
+     * @param \Sofitech\AdminBundle\Entity\Person $person
+     * @return Phone
+     */
+    public function setPerson(\Sofitech\AdminBundle\Entity\Person $person = null)
+    {
+        $this->person = $person;
+
+        return $this;
+    }
+
+    /**
+     * Get person
+     *
+     * @return \Sofitech\AdminBundle\Entity\Person 
+     */
+    public function getPerson()
+    {
+        return $this->person;
     }
 }

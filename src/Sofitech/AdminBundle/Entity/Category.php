@@ -20,36 +20,36 @@ class Category
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="name", type="string", length=255)
      */
-    private $name;
+    protected $name;
 
     /**
      * @var string
      *
      * @ORM\Column(name="description", type="text")
      */
-    private $description;
+    protected $description;
 
     /**
      * @var \stdClass
      *
-     * @ORM\Column(name="parentCategory", type="object")
+     * @ORM\Column(name="parentCategory", type="object", nullable=true)
      */
-    private $parentCategory;
+    protected $parentCategory = null;
 
     /**
      * @ORM\ManyToMany(targetEntity="Teacher", mappedBy="categories") 
      */
-    private $categories;
+    protected $categories;
 
     public function __construct(){
-        $this->categories = new \Doctrine\common\Collections\ArrayCollection();
+        $this->categories = new ArrayCollection();
     }
 
 
@@ -130,5 +130,38 @@ class Category
     public function getParentCategory()
     {
         return $this->parentCategory;
+    }
+
+    /**
+     * Add categories
+     *
+     * @param \Sofitech\AdminBundle\Entity\Teacher $categories
+     * @return Category
+     */
+    public function addCategory(\Sofitech\AdminBundle\Entity\Teacher $categories)
+    {
+        $this->categories[] = $categories;
+
+        return $this;
+    }
+
+    /**
+     * Remove categories
+     *
+     * @param \Sofitech\AdminBundle\Entity\Teacher $categories
+     */
+    public function removeCategory(\Sofitech\AdminBundle\Entity\Teacher $categories)
+    {
+        $this->categories->removeElement($categories);
+    }
+
+    /**
+     * Get categories
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCategories()
+    {
+        return $this->categories;
     }
 }

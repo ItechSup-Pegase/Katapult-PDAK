@@ -2,19 +2,3 @@
 {% block personetype %}
     	Student
 {% endblock %}
-
-{% block personaction %}
-	<ul class="list-unstyled">
-	    <li>
-	        <a href="{{ path('student_edit', { 'id': entity.id }) }}" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
-	    </li>
-	    <li>
-	    	{{ form_start(delete_form) }}
-				<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
-		    {{ form_end(delete_form) }}
-	    </li>
-	    <li>
-	        <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>
-	    </li>
-	</ul>
-{% endblock %}

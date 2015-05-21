@@ -20,53 +20,53 @@ class Adress
      * @ORM\Id
      * @ORM\GeneratedValue(strategy="AUTO")
      */
-    private $id;
+    protected $id;
 
     /**
      * @var string
      *
      * @ORM\Column(name="type", type="string", length=255)
      */
-    private $type;
+    protected $type;
 
     /**
      * @var string
      *
      * @ORM\Column(name="street", type="string", length=255)
      */
-    private $street;
+    protected $street;
 
     /**
      * @var string
      *
      * @ORM\Column(name="city", type="string", length=255)
      */
-    private $city;
+    protected $city;
 
     /**
      * @var string
      *
      * @ORM\Column(name="zipcode", type="string", length=255)
      */
-    private $zipcode;
+    protected $zipcode;
 
     /**
      * @var string
      *
      * @ORM\Column(name="country", type="string", length=255)
      */
-    private $country;
+    protected $country;
 
     /**
      * @ORM\ManyToMany(targetEntity="Person", mappedBy="adresses")
      * cascade={"persist"}
      */
-    private $persons;
+    protected $persons;
 
     /**
      * @ORM\ManyToMany(targetEntity="Company", mappedBy="adresses")
      */
-    private $companies;
+    protected $companies;
 
     public function __construct(){
         $this->persons = new ArrayCollection();
@@ -223,4 +223,60 @@ class Adress
         return $this->persons;
     }
 
+
+    /**
+     * Add persons
+     *
+     * @param \Sofitech\AdminBundle\Entity\Person $persons
+     * @return Adress
+     */
+    public function addPerson(\Sofitech\AdminBundle\Entity\Person $persons)
+    {
+        $this->persons[] = $persons;
+
+        return $this;
+    }
+
+    /**
+     * Remove persons
+     *
+     * @param \Sofitech\AdminBundle\Entity\Person $persons
+     */
+    public function removePerson(\Sofitech\AdminBundle\Entity\Person $persons)
+    {
+        $this->persons->removeElement($persons);
+    }
+
+    /**
+     * Add companies
+     *
+     * @param \Sofitech\AdminBundle\Entity\Company $companies
+     * @return Adress
+     */
+    public function addCompany(\Sofitech\AdminBundle\Entity\Company $companies)
+    {
+        $this->companies[] = $companies;
+
+        return $this;
+    }
+
+    /**
+     * Remove companies
+     *
+     * @param \Sofitech\AdminBundle\Entity\Company $companies
+     */
+    public function removeCompany(\Sofitech\AdminBundle\Entity\Company $companies)
+    {
+        $this->companies->removeElement($companies);
+    }
+
+    /**
+     * Get companies
+     *
+     * @return \Doctrine\Common\Collections\Collection 
+     */
+    public function getCompanies()
+    {
+        return $this->companies;
+    }
 }
