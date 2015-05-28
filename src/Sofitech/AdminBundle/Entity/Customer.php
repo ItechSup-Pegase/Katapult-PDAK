@@ -127,7 +127,7 @@ class Customer extends Person
      */
     public function __construct()
     {
-        $this->adresses = new \Doctrine\Common\Collections\ArrayCollection();
+        $this->adresses = new ArrayCollection();
     }
 
     /**
