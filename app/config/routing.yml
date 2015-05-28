@@ -6,7 +6,4 @@ admin:
     resource: "@SofitechAdminBundle/Controller/"
     type: "annotation"
 
-formation:
-    resource: "@SofitechAdminBundle/Controller/FormationController.php"
-    type: "annotation"
 
