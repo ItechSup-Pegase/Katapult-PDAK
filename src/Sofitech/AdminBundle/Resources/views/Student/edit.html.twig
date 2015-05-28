@@ -1,110 +1,16 @@
-{% extends 'SofitechAdminBundle::layout.html.twig' %}
+{% extends '::base.html.twig' %}
 
-{% block leftmenu %}
-       <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>     
-       {{ form_start(delete_form) }}
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
-    {{ form_end(delete_form) }}
+{% block body -%}
+    <h1>Student edit</h1>
+
+    {{ form(edit_form) }}
+
+        <ul class="record_actions">
+    <li>
+        <a href="{{ path('student') }}">
+            Back to the list
+        </a>
+    </li>
+    <li>{{ form(delete_form) }}</li>
+</ul>
 {% endblock %}
-
-
-{% block content %}
-    <h1>Modifier étudiant</h1>
-
-    {{ form_start(edit_form) }}
-    <div class="form-horizontal col-md-12">
-    	{% for item in edit_form if item.vars['name'] != '_token' and item.vars['name'] != 'adress' %}
-    		<div class="form-group">
-    			<div class="col-md-4">
-    				{{ form_label(item) }}
-    			</div>
-    			<div class="col-md-7">
-    				{{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
-    			</div>
-    		</div>
-    {% endfor %}
-  {{ form_widget(edit_form.adress) }}
-  {{ form_widget(edit_form._token) }}
-	<button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</button>
-	</div>
-	{{ form_end(edit_form) }}   
-
-    
-
-
-{% endblock %}
-
-
-{% block otherjavascripts %} 
-
-{# Voici le script en question : #}
-<script type="text/javascript">
-  $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#sofitech_adminbundle_student_adress');
-    $container.addClass("col-md-12");
-
-    var index = $container.find(':input').length;
-    console.log("index : "+index);
-
-    // On ajoute un premier champ automatiquement s'il n'en existe pas déjà un (cas d'une nouvelle annonce par exemple).
-    if (index == 0) {
-      
-    } else {
-      // Pour chaque catégorie déjà existante, on ajoute un lien de suppression
-      $container.children('div').each(function() {
-        // addDeleteLink($(this));
-        $(this).children('div').addClass("form-horizontal col-md-6");
-        // $(this).children('div').children('div').addClass('form-group myform_'+index);
-        // $('div:not([class])').find('label').first().remove();
-        // $(this).children('label').hide();
-        $(this).children('div').children('div').addClass('form-group');
-
-        $(this).find("label:not(:first)").wrap('<div class="col-md-4" ></div>');
-        $(this).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-        $(this).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-        // index++;
-      });
-    }
-
-     function addCategory($container) {
-      // Dans le contenu de l'attribut « data-prototype », on remplace :
-      // - le texte "__name__label__" qu'il contient par le label du champ
-      // - le texte "__name__" qu'il contient par le numéro du champ
-      var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Adresse n°' + (index+1))
-          .replace(/__name__/g, index));
-
-      console.log($prototype);
-
-      // On ajoute le prototype modifié à la fin de la balise <div>
-      $container.append($prototype);
-
-      // On applique les class css de bootstrap
-      $('#sofitech_adminbundle_student_adress_'+index).addClass("form-horizontal col-md-6");
-      $('#sofitech_adminbundle_student_adress_'+index).children('div').addClass('form-group myform_'+index);
-
-      $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
-      $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-      $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-      index++;
-    }
-
-    if(index < 6){
-      addCategory($container);
-    }
-
-    
-
-     // masquage des labels §§§
-     $('div:not([class])').each( function(){
-        $(this).find('label').eq(0).hide();
-     });
-    
-  });
-</script>
-
-
-{% endblock %}
-
-

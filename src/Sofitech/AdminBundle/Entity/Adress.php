@@ -58,10 +58,9 @@ class Adress
     protected $country;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Person", mappedBy="adresses")
-     * cascade={"persist"}
+     * @ORM\OneToOne(targetEntity="Person", mappedBy="adress"))
      */
-    protected $persons;
+    protected $person;
 
     /**
      * @ORM\ManyToMany(targetEntity="Company", mappedBy="adresses")
@@ -69,7 +68,6 @@ class Adress
     protected $companies;
 
     public function __construct(){
-        $this->persons = new ArrayCollection();
         $this->companies = new ArrayCollection();
     }
 
@@ -201,50 +199,26 @@ class Adress
 
 
     /**
-     * Set persons
+     * Set person
      *
-     * @param string $persons
+     * @param \stdClass $person
      * @return Adress
      */
-    public function setPersons($person)
+    public function setPerson($person)
     {
-        $this->persons = $person;
+        $this->person = $person;
 
         return $this;
     }
 
     /**
-     * Get persons
+     * Get person
      *
      * @return \stdClass 
      */
-    public function getPersons()
+    public function getPerson()
     {
-        return $this->persons;
-    }
-
-
-    /**
-     * Add persons
-     *
-     * @param \Sofitech\AdminBundle\Entity\Person $persons
-     * @return Adress
-     */
-    public function addPerson(\Sofitech\AdminBundle\Entity\Person $persons)
-    {
-        $this->persons[] = $persons;
-
-        return $this;
-    }
-
-    /**
-     * Remove persons
-     *
-     * @param \Sofitech\AdminBundle\Entity\Person $persons
-     */
-    public function removePerson(\Sofitech\AdminBundle\Entity\Person $persons)
-    {
-        $this->persons->removeElement($persons);
+        return $this->person;
     }
 
     /**

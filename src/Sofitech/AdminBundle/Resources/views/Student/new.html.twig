@@ -6,17 +6,31 @@
     <h1>Ajouter étudiant</h1>
 {{ form_start(form) }}
     <div class="form-horizontal col-md-12">
-        {% for item in form if item.vars['name'] != '_token' and item.vars['name'] != 'adress' %}
-            <div class="form-group">
-                <div class="col-md-4">
-                    {{ form_label(item) }}
-                </div>
-                <div class="col-md-7">
-                    {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
-                </div>
-            </div>
+        {% for item in form if item.vars['name'] != '_token' %}
+            {% if item.vars['name'] != 'adress' %}
+	            <div class="form-group">
+	                <div class="col-md-4">
+	                    {{ form_label(item) }}
+	                </div>
+	                <div class="col-md-7">
+	                    {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+	                </div>
+	            </div>
+	        {% else %}
+	        	{% for element in item  %}
+	        		<div class="form-group">
+		                <div class="col-md-4">
+		                    {{ form_label(element) }}
+		                </div>
+		                <div class="col-md-7">
+		                    {{ form_widget(element, {'attr' : {'class' : 'form-control'}} ) }}
+		                </div>
+		            </div>
+		        {% endfor %}
+		    {% endif %}
         {% endfor %}
-        {{ form_widget(form.adress) }}
+
+        {# {{ form_widget(form.adress) }} #}
         {{ form_widget(form._token) }}  
 
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>  
@@ -24,52 +38,5 @@
 </div>
 {% endblock %}
 
-{% block otherjavascripts %} 
-
-{# Voici le script en question : #}
-<script type="text/javascript">
-  $(document).ready(function() {
-    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
-    var $container = $('div#sofitech_adminbundle_student_adress');
-    $container.addClass("col-md-12");
-
-    var index = 0;
-  
-    addCategory($container);
-    addCategory($container);
-
-    // La fonction qui ajoute un formulaire Categorie
-    function addCategory($container) {
-      // Dans le contenu de l'attribut « data-prototype », on remplace :
-      // - le texte "__name__label__" qu'il contient par le label du champ
-      // - le texte "__name__" qu'il contient par le numéro du champ
-      var $prototype = $($container.attr('data-prototype').replace(/__name__label__/g, 'Adresse n°' + (index+1))
-          .replace(/__name__/g, index));
-
-      console.log($prototype);
-
-      // On ajoute le prototype modifié à la fin de la balise <div>
-      $container.append($prototype);
-
-      // On applique les class css de bootstrap
-      $('#sofitech_adminbundle_student_adress_'+index).addClass("form-horizontal col-md-6");
-      $('#sofitech_adminbundle_student_adress_'+index).children('div').addClass('form-group myform_'+index);
-
-      $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
-      $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-      $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
-      // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
-      index++;
-    }
-
-     // masquage des labels §§§
-     $('div:not([class])').each( function(){
-       $(this).find('label').eq(0).hide();
-     });
-    
-  });
-</script>
-
-
-{% endblock %}
+{% block otherjavascripts %}{% endblock %}
 

@@ -10,11 +10,6 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sofitech\AdminBundle\Entity\Student;
 use Sofitech\AdminBundle\Form\StudentType;
 
-use Sofitech\AdminBundle\Entity\Adress;
-use Sofitech\AdminBundle\Entity\PersonRepository;
-
-use Sofitech\AdminBundle\Form\AdressType;
-
 /**
  * Student controller.
  *
@@ -80,7 +75,9 @@ class StudentController extends Controller
             'action' => $this->generateUrl('student_create'),
             'method' => 'POST',
         ));
-        
+
+        // $form->add('submit', 'submit', array('label' => 'Create'));
+
         return $form;
     }
 
@@ -113,16 +110,13 @@ class StudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SofitechAdminBundle:Person')->findWithAdresses($id);
+        $entity = $em->getRepository('SofitechAdminBundle:Student')->find($id);
+
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Student entity.');
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
-        //$template = $twig->loadTemplate('content.person.show.html.twig');
-
-        // dump($entity);
 
         return array(
             'entity'      => $entity,
@@ -171,7 +165,7 @@ class StudentController extends Controller
             'method' => 'PUT',
         ));
 
-        // $form->add('submit', 'submit', array('label' => 'Modifier'));
+        // $form->add('submit', 'submit', array('label' => 'Update'));
 
         return $form;
     }
@@ -246,11 +240,7 @@ class StudentController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('student_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            // ->add('button', 'submit', 
-            //     array(
-            //         'label' => 'Delete', 
-            //         'attr' => array('class' => 'btn btn-default btn-default ')
-            //     ))
+            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }
