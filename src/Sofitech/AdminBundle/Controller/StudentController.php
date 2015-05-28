@@ -110,7 +110,7 @@ class StudentController extends Controller
     {
         $em = $this->getDoctrine()->getManager();
 
-        $entity = $em->getRepository('SofitechAdminBundle:Student')->find($id);
+        $entity = $em->getRepository('SofitechAdminBundle:Person')->findWithAdresses($id);
 
         if (!$entity) {
             throw $this->createNotFoundException('Unable to find Student entity.');
@@ -240,7 +240,7 @@ class StudentController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('student_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            // ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

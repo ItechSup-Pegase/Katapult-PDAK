@@ -6,6 +6,10 @@
     <h1>Ajouter étudiant</h1>
 {{ form_start(form) }}
     <div class="form-horizontal col-md-12">
+    	<div class="form-horizontal col-md-6">
+    	<div class=" panel panel-default">
+    	<div class="panel-heading"><strong><span class="label label-default">IDENTITÉ</span></strong></div>
+    	<div class="panel-body">
         {% for item in form if item.vars['name'] != '_token' %}
             {% if item.vars['name'] != 'adress' %}
 	            <div class="form-group">
@@ -17,23 +21,41 @@
 	                </div>
 	            </div>
 	        {% else %}
+	        	</div>
+	        	</div>
+	        	</div>
+	        	<div class="form-horizontal col-md-6">
+	        	<div class="panel panel-default">
+	        	<div class="panel-heading"><strong><span class="label label-default">ADRESSE</span></strong></div>
+	        	<div class="panel-body">
 	        	{% for element in item  %}
 	        		<div class="form-group">
 		                <div class="col-md-4">
-		                    {{ form_label(element) }}
+		                	{% if element.vars['name'] != 'type' %}
+		                    	{{ form_label(element) }}
+		                	{% endif %}
 		                </div>
 		                <div class="col-md-7">
-		                    {{ form_widget(element, {'attr' : {'class' : 'form-control'}} ) }}
+		                	{% if element.vars['name'] == 'type' %}
+		                    	{{ form_widget(element, {'attr' : {'class' : 'form-control', 'value' : 'contact'}} ) }}
+		                	{% else %}
+		                    	{{ form_widget(element, {'attr' : {'class' : 'form-control'}} ) }}
+		                	{% endif %}
+		                
 		                </div>
 		            </div>
 		        {% endfor %}
+		   		 </div>
+		   		 </div>
+		   		 </div>
 		    {% endif %}
         {% endfor %}
 
         {# {{ form_widget(form.adress) }} #}
         {{ form_widget(form._token) }}  
-
+        <div class="form-horizontal col-md-12">
         <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>  
+    </div>
 {{ form_end(form) }}
 </div>
 {% endblock %}
