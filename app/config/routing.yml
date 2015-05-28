@@ -2,24 +2,8 @@ sofitech_admin:
     resource: "@SofitechAdminBundle/Resources/config/routing.yml"
     prefix:   /
 
-student:
-    resource: "@SofitechAdminBundle/Controller/StudentController.php"
-    type: "annotation"
-
-adress:
-    resource: "@SofitechAdminBundle/Controller/AdressController.php"
-    type: "annotation"
-
-company:
-    resource: "@SofitechAdminBundle/Controller/CompanyController.php"
-    type: "annotation"
-
-teacher:
-    resource: "@SofitechAdminBundle/Controller/TeacherController.php"
-    type: "annotation"
-
-category:
-    resource: "@SofitechAdminBundle/Controller/CategoryController.php"
+admin:
+    resource: "@SofitechAdminBundle/Controller/"
     type: "annotation"
 
 formation:
