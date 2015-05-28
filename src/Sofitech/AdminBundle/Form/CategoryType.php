@@ -18,7 +18,7 @@ class CategoryType extends AbstractType
             ->add('name')
             ->add('description')
             ->add('parentCategory')
-            ->add('categories')
+            ->add('formations')
         ;
     }
     

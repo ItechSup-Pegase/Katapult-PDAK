@@ -1,39 +1,39 @@
-{% extends '::base.html.twig' %}
+{% extends 'SofitechAdminBundle::layout.html.twig' %}
 
-{% block body -%}
-    <h1>Teacher list</h1>
+{% block leftmenu %}
+    <a href="{{ path('teacher_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un professeur</a>
+{% endblock %}
 
-    <table class="records_list">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for entity in entities %}
-            <tr>
-                <td><a href="{{ path('teacher_show', { 'id': entity.id }) }}">{{ entity.id }}</a></td>
-                <td>
-                <ul>
-                    <li>
-                        <a href="{{ path('teacher_show', { 'id': entity.id }) }}">show</a>
-                    </li>
-                    <li>
-                        <a href="{{ path('teacher_edit', { 'id': entity.id }) }}">edit</a>
-                    </li>
-                </ul>
-                </td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+{% block content %}
+    <div class="col-md-12">
+        <h1>Liste des professeurs</h1>
 
-        <ul>
-        <li>
-            <a href="{{ path('teacher_new') }}">
-                Create a new entry
-            </a>
-        </li>
-    </ul>
-    {% endblock %}
+        <table class="table table-striped">
+            <thead>
+                <tr>
+                    <th>Nom</th>
+                    <th>Prénom</th>
+                    <th>Actions</th>
+                    {% block tableth %}{% endblock %}
+                </tr>
+            </thead>
+            <tbody>
+            {% for entity in entities %}
+                <tr>
+                    <td>{{ entity.firstname }}</td>                    
+                    <td>{{ entity.lastname }}</td>
+                    {% block tabletd %}{% endblock %}
+                    <td>
+                    {% block personaction %}{% endblock %}
+                    <div class="btn-group" role="group" aria-label="...">
+                      <a href="{{ path('teacher_show', { 'id': entity.id }) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-user"></span> Afficher</a>
+                     <a href="{{ path('teacher_edit', { 'id': entity.id }) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                    </div>
+                    </td>
+                </tr>
+            {% endfor %}
+            </tbody>
+        </table>
+    </div>
+{% endblock %}
+

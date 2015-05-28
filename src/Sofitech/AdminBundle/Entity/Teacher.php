@@ -23,16 +23,6 @@ class Teacher extends Person
      */
     protected $id;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="teachers") 
-     * @ORM\JoinTable(name="teachers_categories")
-     */
-    protected $categories;
-
-    public function __construct(){
-        $this->categories = new ArrayCollection();
-    }
-
 
     /**
      * Get id
@@ -188,39 +178,6 @@ class Teacher extends Person
     public function getBirthdate()
     {
         return $this->birthdate;
-    }
-
-    /**
-     * Add categories
-     *
-     * @param \Sofitech\AdminBundle\Entity\Category $categories
-     * @return Teacher
-     */
-    public function addCategory(\Sofitech\AdminBundle\Entity\Category $categories)
-    {
-        $this->categories[] = $categories;
-
-        return $this;
-    }
-
-    /**
-     * Remove categories
-     *
-     * @param \Sofitech\AdminBundle\Entity\Category $categories
-     */
-    public function removeCategory(\Sofitech\AdminBundle\Entity\Category $categories)
-    {
-        $this->categories->removeElement($categories);
-    }
-
-    /**
-     * Get categories
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCategories()
-    {
-        return $this->categories;
     }
 
     /**

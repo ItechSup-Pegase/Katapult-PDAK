@@ -6,7 +6,7 @@ use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\FormBuilderInterface;
 use Symfony\Component\OptionsResolver\OptionsResolverInterface;
 
-class TeacherType extends AbstractType
+class TeacherType extends PersonType
 {
     /**
      * @param FormBuilderInterface $builder
@@ -14,9 +14,7 @@ class TeacherType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
-        $builder
-            ->add('categories')
-        ;
+        parent::buildForm($builder, $options);
     }
     
     /**

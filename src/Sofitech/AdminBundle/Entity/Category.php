@@ -44,14 +44,14 @@ class Category
     protected $parentCategory = null;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Teacher", mappedBy="categories") 
+     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="categories")
+     * cascade={"persist"}
      */
-    protected $categories;
+    protected $formations;
 
     public function __construct(){
-        $this->categories = new ArrayCollection();
+        $this->formations = new ArrayCollection();
     }
-
 
     /**
      * Get id
@@ -132,36 +132,37 @@ class Category
         return $this->parentCategory;
     }
 
-    /**
-     * Add categories
+        /**
+     * Add formations
      *
-     * @param \Sofitech\AdminBundle\Entity\Teacher $categories
+     * @param \Sofitech\AdminBundle\Entity\Formation $formations
      * @return Category
      */
-    public function addCategory(\Sofitech\AdminBundle\Entity\Teacher $categories)
+    public function addFormation(\Sofitech\AdminBundle\Entity\Formation $formations)
     {
-        $this->categories[] = $categories;
+        $this->formations[] = $formations;
 
         return $this;
     }
 
     /**
-     * Remove categories
+     * Remove formations
      *
-     * @param \Sofitech\AdminBundle\Entity\Teacher $categories
+     * @param \Sofitech\AdminBundle\Entity\Formation $formations
      */
-    public function removeCategory(\Sofitech\AdminBundle\Entity\Teacher $categories)
+    public function removeFormation(\Sofitech\AdminBundle\Entity\Formation $formations)
     {
-        $this->categories->removeElement($categories);
+        $this->formations->removeElement($formations);
     }
 
     /**
-     * Get categories
+     * Get formations
      *
      * @return \Doctrine\Common\Collections\Collection 
      */
-    public function getCategories()
+    public function getFormations()
     {
-        return $this->categories;
+        return $this->formations;
     }
+
 }
