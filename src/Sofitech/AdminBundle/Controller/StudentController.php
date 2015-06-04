@@ -118,6 +118,8 @@ class StudentController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
+        dump($entity);
+
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),

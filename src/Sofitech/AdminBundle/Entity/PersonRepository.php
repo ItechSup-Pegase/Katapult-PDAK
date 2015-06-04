@@ -8,12 +8,10 @@ class PersonRepository extends EntityRepository{
 	public function findWithAdresses($id){
 		return $this->getEntityManager()
 			->createQuery(
-				'SELECT p FROM SofitechAdminBundle:Person p  
-				 INDEX BY p.id
-				 JOIN p.adress
+				'SELECT p, a FROM SofitechAdminBundle:Person p, SofitechAdminBundle:Adress a 
 				 WHERE p.id = :id'
 			)
 		->setParameter('id', $id)
-		->getResult();
+		->getArrayResult();
 	}
 }

@@ -6,4 +6,8 @@ admin:
     resource: "@SofitechAdminBundle/Controller/"
     type: "annotation"
 
+fos_user:
+    resource: "@FOSUserBundle/Resources/config/routing/all.xml"
+    type: "xml"
+
 
