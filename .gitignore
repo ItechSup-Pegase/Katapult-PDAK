@@ -1,5 +1,6 @@
 /.idea
 /app/cache/*
+/app/bootstrap.php.cache
 !app/cache/.gitkeep
 /app/config/parameters.yml
 /app/logs/*
