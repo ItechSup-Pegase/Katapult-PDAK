@@ -35,7 +35,13 @@ class PersonType extends AbstractType
                         'format' => 'dd-MM-yyyy',
                         'attr' => array('placeholder' => 'jj/mm/aaaa'))
                 )
-            ->add('adress', new AdressType());
+            ->add('adresses', 'collection', array(
+                'label' => 'Adresse',
+                'type' => new AdressType(),
+                'allow_add' => true,
+                'allow_delete' => true,
+                ))
+            ;
 
     }
 

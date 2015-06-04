@@ -10,6 +10,10 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sofitech\AdminBundle\Entity\Student;
 use Sofitech\AdminBundle\Form\StudentType;
 
+use Sofitech\AdminBundle\Entity\Adress;
+use Sofitech\AdminBundle\Entity\PersonRepository;
+use Sofitech\AdminBundle\Form\AdressType;
+
 /**
  * Student controller.
  *
@@ -92,7 +96,7 @@ class StudentController extends Controller
     {
         $entity = new Student();
         $form   = $this->createCreateForm($entity);
-
+        dump($entity);
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),

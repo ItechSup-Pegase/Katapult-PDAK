@@ -20,15 +20,15 @@ class Student extends Person
     //  */
     // protected $id;
 
-    // /**
-    //  * Get id
-    //  *
-    //  * @return integer 
-    //  */
-    // public function getId()
-    // {
-    //     return parent::getId();
-    // }
+    /**
+     * Get id
+     *
+     * @return integer 
+     */
+    public function getId()
+    {
+        return parent::getId();
+    }
 
     // /**
     //  * Set id

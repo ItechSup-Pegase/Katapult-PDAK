@@ -14,9 +14,11 @@
         
         
         {% block body %}{% endblock %}
-            <script src="{{ asset('bundles/sofitechadmin/bootstrap/js/bootstrap.min.js') }}"></script>
+            
+        {% block javascripts %}
             <script src="{{ asset('bundles/sofitechadmin/js/jquery.min.js') }}"></script>
-        {% block otherjavascripts %}{% endblock %}
+            <script src="{{ asset('bundles/sofitechadmin/bootstrap/js/bootstrap.min.js') }}"></script>
+        {% endblock %}
 
 
     </body>

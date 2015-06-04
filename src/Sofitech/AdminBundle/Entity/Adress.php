@@ -58,7 +58,8 @@ class Adress
     protected $country;
 
     /**
-     * @ORM\OneToOne(targetEntity="Person", mappedBy="adress"))
+     * @ORM\ManyToOne(targetEntity="Person", inversedBy="adresses")
+     * @ORM\JoinColumn(name="person_id", referencedColumnName="id", nullable=false)
      */
     protected $person;
 
