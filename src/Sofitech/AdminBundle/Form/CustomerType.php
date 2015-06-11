@@ -16,8 +16,7 @@ class CustomerType extends PersonType
     {
         parent::buildForm($builder, $options);
         $builder
-            ->add('billingadress')
-            ->add('company')
+            // ->add('company')
         ;
     }
     
