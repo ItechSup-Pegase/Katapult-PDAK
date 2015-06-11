@@ -12,13 +12,6 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Student extends Person
 {
-    
-    // /**
-    //  *
-    //  * @ORM\OneToOne(targetEntity="Person")
-    //  * @ORM\JoinColumn(name="id", referencedColumnName="id")
-    //  */
-    // protected $id;
 
     /**
      * Get id
@@ -30,18 +23,20 @@ class Student extends Person
         return parent::getId();
     }
 
-    // /**
-    //  * Set id
-    //  *
-    //  * @param \Sofitech\AdminBundle\Entity\Person $id
-    //  * @return Student
-    //  */
-    // public function setId(\Sofitech\AdminBundle\Entity\Person $id = null)
-    // {
-    //     $this->id = $id;
+    /**
+     * Get adresses
+     *
+     * @return \Doctrine\Common\Collections\Collection $adresses
+     */
+    public function getAdresses()
+    {
+        return parent::getAdresses();
+    }
 
-    //     return $this;
-    // }
+
+
+
+    
 
 
 }

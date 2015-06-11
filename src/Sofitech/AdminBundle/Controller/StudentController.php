@@ -53,7 +53,7 @@ class StudentController extends Controller
         $form->handleRequest($request);
 
         if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager();
+            $em = $this->getDoctrine()->getManager(); 
             $em->persist($entity);
             $em->flush();
 
@@ -96,7 +96,6 @@ class StudentController extends Controller
     {
         $entity = new Student();
         $form   = $this->createCreateForm($entity);
-        dump($entity);
         return array(
             'entity' => $entity,
             'form'   => $form->createView(),

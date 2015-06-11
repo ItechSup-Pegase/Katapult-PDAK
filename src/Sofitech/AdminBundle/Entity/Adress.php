@@ -58,10 +58,10 @@ class Adress
     protected $country;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Person", inversedBy="adresses")
-     * @ORM\JoinColumn(name="person_id", referencedColumnName="id", nullable=false)
+     * @ORM\ManyToMany(targetEntity="Person", mappedBy="adresses")
+     * cascade={"persist"}
      */
-    protected $person;
+    protected $persons;
 
     /**
      * @ORM\ManyToMany(targetEntity="Company", mappedBy="adresses")
@@ -200,26 +200,44 @@ class Adress
 
 
     /**
-     * Set person
+     * Set persons
      *
-     * @param \stdClass $person
+     * @param string $persons
      * @return Adress
      */
-    public function setPerson($person)
+    public function setPersons($person)
     {
-        $this->person = $person;
-
+        $this->persons = $person;
         return $this;
     }
-
     /**
-     * Get person
+     * Get persons
      *
      * @return \stdClass 
      */
-    public function getPerson()
+    public function getPersons()
     {
-        return $this->person;
+        return $this->persons;
+    }
+    /**
+     * Add persons
+     *
+     * @param \Sofitech\AdminBundle\Entity\Person $persons
+     * @return Adress
+     */
+    public function addPerson(\Sofitech\AdminBundle\Entity\Person $persons)
+    {
+        $this->persons[] = $persons;
+        return $this;
+    }
+    /**
+     * Remove persons
+     *
+     * @param \Sofitech\AdminBundle\Entity\Person $persons
+     */
+    public function removePerson(\Sofitech\AdminBundle\Entity\Person $persons)
+    {
+        $this->persons->removeElement($persons);
     }
 
     /**

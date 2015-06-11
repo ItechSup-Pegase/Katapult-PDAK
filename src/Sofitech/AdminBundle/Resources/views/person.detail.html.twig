@@ -24,9 +24,9 @@
                 <td>{{ entity.birthdate|date("d/m/Y") }}</td>
             </tr> 
 
-           {#  {% for adress in entity.adresses %}
+            {% for adress in entity.adresses %}
                 {{ include('SofitechAdminBundle:Adress:detail.html.twig', { 'entity': adress }) }}
             {% endfor %}
- #}
+
         </table>
     </div>

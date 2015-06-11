@@ -61,10 +61,11 @@ class Person
     protected $birthdate;
 
     /**
-     * @ORM\OneToMany(targetEntity="Adress", mappedBy="person", cascade={"persist", "remove"})
+     * @ORM\ManyToMany(targetEntity="Adress", inversedBy="persons",cascade={"persist"}) 
+     * @ORM\JoinTable(name="persons_adresses")
+     *
      */
     protected $adresses;
-
     public function __construct(){
         $this->adresses = new ArrayCollection();
     }
@@ -195,47 +196,29 @@ class Person
     }
 
     /**
-     * add adresses
+     * Add adresses
      *
-     * @param \Sofitech\AdminBundle\Entity\Adress $adress
+     * @param \Sofitech\AdminBundle\Entity\Adress $adresses
      * @return Person
      */
-    public function addAdress(\Sofitech\AdminBundle\Entity\Adress $adress){
-        // if (!$this->adresses->contains($adress)) {
-            $this->adresses[] = $adress;
-        // }
+    public function addAdress(\Sofitech\AdminBundle\Entity\Adress $adresses)
+    {
+        $this->adresses[] = $adresses;
         return $this;
     }
-
     /**
      * Remove adresses
      *
      * @param \Sofitech\AdminBundle\Entity\Adress $adresses
      */
-    public function removeAdress(\Sofitech\AdminBundle\Entity\Adress $adress)
+    public function removeAdress(\Sofitech\AdminBundle\Entity\Adress $adresses)
     {
-        // if (!$this->adresses->contains($adress)) {
-            $this->adresses->removeElement($adress);
-        // }
+        $this->adresses->removeElement($adresses);
     }
-
-    /**
-     * Set adress
-     *
-     * @param \stdClass $adress
-     * @return Person
-     */
-    public function setAdresses($adress)
-    {
-        $this->adresses = $adress;
-
-        return $this;
-    }
-
     /**
      * Get adresses
      *
-     * @return \Doctrine\Common\Collections\Collection
+     * @return \Doctrine\Common\Collections\Collection 
      */
     public function getAdresses()
     {

@@ -43,7 +43,7 @@
   $(document).ready(function() {
     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
     var $container = $('div#sofitech_adminbundle_student_adresses');
-    $container.addClass("col-md-12");
+    // $container.addClass("col-md-12");
     var index = 0;
   
     addCategory($container);
@@ -64,6 +64,16 @@
       $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
       $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
       $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+      $('#sofitech_adminbundle_student_adresses_0_type').val("contact");
+      $('#sofitech_adminbundle_student_adresses_0_type').parents().eq(1).hide();
+      
+     $('#sofitech_adminbundle_student_adresses_0').wrap('<div class=" panel panel-default"></div>');
+     $('#sofitech_adminbundle_student_adresses_0').append('<div class="panel-heading"><strong><span class="label label-default">ADRESSE</span></strong></div>');
+
+     $('#sofitech_adminbundle_student_adresses_0').wrap('<div class="panel-body"></div>');
+
+     
+
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
       index++;
     }
@@ -71,7 +81,7 @@
      $('div:not([class])').each( function(){
        $(this).find('label').eq(0).hide();
      });
-    
+
   });
 </script>
 {% endblock %}
