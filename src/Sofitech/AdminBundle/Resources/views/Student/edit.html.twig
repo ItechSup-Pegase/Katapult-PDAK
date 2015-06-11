@@ -1,70 +1,70 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 {% block leftmenu %}
-       <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>  
-       {{ form_start(delete_form) }}
-        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-remove"></span> Supprimer</button>
-    {{ form_end(delete_form) }}   
+       <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>     
 {% endblock %}
 {% block content -%}
     <h1>Ajouter étudiant</h1>
 {{ form_start(edit_form) }}
-    <div class="form-horizontal col-md-12">
-    	<div class="form-horizontal col-md-6">
-    	<div class=" panel panel-default">
-    	<div class="panel-heading"><strong><span class="label label-default">IDENTITÉ</span></strong></div>
-    	<div class="panel-body">
-        {% for item in edit_form if item.vars['name'] != '_token' %}
-            {% if item.vars['name'] != 'adress' %}
-	            <div class="form-group">
-	                <div class="col-md-4">
-	                    {{ form_label(item) }}
-	                </div>
-	                <div class="col-md-7">
-	                    {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
-	                </div>
-	            </div>
-	        {% else %}
-	        	</div>
-	        	</div>
-	        	</div>
-	        	<div class="form-horizontal col-md-6">
-	        	<div class="panel panel-default">
-	        	<div class="panel-heading"><strong><span class="label label-default">ADRESSE</span></strong></div>
-	        	<div class="panel-body">
-	        	{% for element in item  %}
-	        		
-                	{% if element.vars['name'] != 'type' %}
-                		<div class="form-group">
-               				<div class="col-md-4">
-                    			{{ form_label(element) }}
-                    		</div>
-                	{% endif %}
-		                
-		                
-                	{% if element.vars['name'] == 'type' %}
-                    	{{ form_widget(element, {'attr' : {'class' : 'form-control', 'value' : 'contact'}} ) }}
-                	{% else %}
-                		<div class="col-md-7">
-	                    	{{ form_widget(element, {'attr' : {'class' : 'form-control'}} ) }}
-	                    </div>
-            			</div>
-                	{% endif %}  
-		        {% endfor %}
-		   		 </div>
-		   		 </div>
-		   		 </div>
-		    {% endif %}
-        {% endfor %}
+    <div class="form-horizontal col-md-12 theform">
+        <div class="form-horizontal col-md-6">
+            <div class=" panel panel-default">
+            <div class="panel-heading"><strong><span class="label label-default">IDENTITÉ</span></strong></div>
+                <div class="panel-body">
+                {% for item in edit_form if item.vars['name'] != '_token' %}
+                    {% if item.vars['name'] != 'adresses' %}
 
-        {# {{ form_widget(form.adress) }} #}
-        {{ form_widget(edit_form._token) }}  
-        <div class="form-horizontal col-md-12">
-            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</button> 
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                {{ form_label(item) }}
+                            </div>
+                            <div class="col-md-7">
+                                {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+                            </div>
+                        </div>
+                        
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
         </div>
+        
+        
+        {{ form_widget(edit_form._token) }}  
+       {#  <div class="form-horizontal col-md-12">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>  
+    </div> #}
 {{ form_end(edit_form) }}
-
 </div>
 {% endblock %}
 
-{% block otherjavascripts %}{% endblock %}
+{% block javascripts %} 
+    {{ parent() }}
+    <script type="text/javascript">
+  $(document).ready(function() {
+    // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div#sofitech_adminbundle_student_adresses');
+    // $container.addClass("col-md-12");
+    var index = 0;
+    $('#sofitech_adminbundle_student_adresses_'+index).addClass("form-horizontal col-md-6");
+    $('#sofitech_adminbundle_student_adresses_'+index).children('div').addClass('form-group myform_'+index);
+    $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
+    $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+    $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+    $('#sofitech_adminbundle_student_adresses_0_type').val("contact");
+    $('#sofitech_adminbundle_student_adresses_0_type').parents().eq(1).hide();
+    $('#sofitech_adminbundle_student_adresses_0').wrapInner('<div class="panel-body"></div>');
+
+    $('#sofitech_adminbundle_student_adresses_0').wrapInner('<div class=" panel panel-default"></div>');
+    $('#sofitech_adminbundle_student_adresses_0').children('div').prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE</span></strong></div>');
+
+    // masquage des labels §§§
+    $('div:not([class])').each( function(){
+    $(this).find('label').eq(0).hide();
+    });
+
+    $('.theform').append('<div class="form-horizontal col-md-12"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</button></div>');
+
+  });
+</script>
+{% endblock %}
 
