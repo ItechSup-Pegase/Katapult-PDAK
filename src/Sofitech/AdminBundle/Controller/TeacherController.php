@@ -30,9 +30,15 @@ class TeacherController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('SofitechAdminBundle:Teacher')->findAll();
+        
+        $deleteForms = array();
+        foreach ($entities as $entity) {
+            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+        }
 
         return array(
             'entities' => $entities,
+            'delete_forms' => $deleteForms,
         );
     }
     /**

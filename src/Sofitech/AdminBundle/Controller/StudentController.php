@@ -35,8 +35,14 @@ class StudentController extends Controller
 
         $entities = $em->getRepository('SofitechAdminBundle:Student')->findAll();
 
+        $deleteForms = array();
+        foreach ($entities as $entity) {
+            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+        }
+        
         return array(
             'entities' => $entities,
+            'delete_forms' => $deleteForms,
         );
     }
     /**

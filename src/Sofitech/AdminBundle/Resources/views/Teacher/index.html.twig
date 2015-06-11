@@ -29,9 +29,30 @@
                     <div class="btn-group" role="group" aria-label="...">
                       <a href="{{ path('teacher_show', { 'id': entity.id }) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-eye-open"></span> Afficher</a>
                      <a href="{{ path('teacher_edit', { 'id': entity.id }) }}" class="btn btn-default btn-sm"><span class="glyphicon glyphicon-edit"></span> Modifier</a>
+                     <a type="button" class="btn btn-default btn-sm" data-toggle="modal" data-target="#myModal-{{ entity.id }}"><span class="glyphicon glyphicon-remove"></span> Supprimer</a>
                     </div>
                     </td>
                 </tr>
+                <div class="modal fade" id="myModal-{{ entity.id }}">
+                  <div class="modal-dialog">
+                    <div class="modal-content">
+                      <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+                        <h4 class="modal-title">Supprimer fommateur</h4>
+                      </div>
+                      <div class="modal-body">
+                        <p>Voulez-vous vraiement supprimer : </p>
+                        <p><strong>{{ entity.firstname }} {{ entity.lastname }} </strong></p>
+                      </div>
+                      <div class="modal-footer">
+                        {{ form_start(delete_forms[entity.id]) }}        
+                                <button type="submit" class="btn btn-danger"></span> Supprimer</button>
+                                <button type="button" class="btn btn-default" data-dismiss="modal"> Annuler</button>
+                        {{ form_end(delete_forms[entity.id]) }}
+                      </div>
+                    </div><!-- /.modal-content -->
+                  </div><!-- /.modal-dialog -->
+                </div><!-- /.modal -->
             {% endfor %}
             </tbody>
         </table>
