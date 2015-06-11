@@ -1,15 +1,31 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Formation creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('formation') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% extends 'SofitechAdminBundle::layout.html.twig' %}
+{% block leftmenu %}
+    <a href="{{ path('formation') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des formations</a>
+{% endblock %}
+{% block content -%}
+    <h1>Ajouter une formation</h1>
+    {{ form_start(form) }}
+    <div class="form-horizontal col-md-12">
+        <div class="form-horizontal col-md-6">
+            <div class=" panel panel-default">
+                <div class="panel-heading"><strong><span class="label label-default">Formation</span></strong></div>
+                <div class="panel-body">
+                    {% for item in form if item.vars['name'] != '_token' %}
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    {{ form_label(item) }}
+                                </div>
+                                <div class="col-md-7">
+                                    {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+                                </div>
+                            </div>
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {{ form_widget(form._token) }}
+        <div class="form-horizontal col-md-12">
+            <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>
+        </div>
+    {{ form_end(form) }}
 {% endblock %}

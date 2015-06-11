@@ -1,0 +1,31 @@
+
+{% if active == "informatique" %}
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="{{ path('formation') }}">Economie</a></li>
+        <li role="presentation" class="active"><a href="{{ path('formation') }}">Informatique</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Ressources humaines</a></li>
+    </ul>
+
+{% elseif active == "economie" %}
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="{{ path('formation') }}">Economie</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Informatique</a></li>
+        <li role="presentation" class="active"><a href="{{ path('formation') }}">Ressources humaines</a></li>
+    </ul>
+
+{% elseif active == "ressource_humaine" %}
+    <ul class="nav nav-tabs">
+        <li role="presentation"class="active"><a href="{{ path('formation') }}">Economie</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Informatique</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Ressources humaines</a></li>
+    </ul>
+
+{% else %}
+    <ul class="nav nav-tabs">
+        <li role="presentation"><a href="{{ path('formation') }}">Economie</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Informatique</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Ressources humaines</a></li>
+    </ul>
+
+{% endif %}
+
