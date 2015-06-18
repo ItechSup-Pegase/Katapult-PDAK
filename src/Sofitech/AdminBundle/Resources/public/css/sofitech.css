@@ -1,0 +1,10 @@
+/* NAVIGATION LEFT */
+.nav-left h3{
+     text-align : center;
+}
+.nav-left a.btn,
+.nav-left button{
+    width : 98%;
+    margin : 5px 0 5px 0;
+    padding : 5px 0 5px 0;
+}
