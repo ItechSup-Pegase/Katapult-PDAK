@@ -8,3 +8,11 @@
     margin : 5px 0 5px 0;
     padding : 5px 0 5px 0;
 }
+
+.tounwrap{
+	min-height: 350px;
+}
+
+#hideaddress{
+	cursor: pointer;
+}

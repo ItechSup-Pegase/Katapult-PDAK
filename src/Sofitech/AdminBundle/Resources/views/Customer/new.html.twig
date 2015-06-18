@@ -1,6 +1,6 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 {% block leftmenu %}
-       <a href="{{ path('customer') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>     
+       <a href="{{ path('customer') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des Clients</a>     
 {% endblock %}
 {% block content -%}
     <h1>Ajouter client</h1>
@@ -60,19 +60,23 @@
       // On ajoute le prototype modifié à la fin de la balise <div>
       $container.append($prototype);
       // On applique les class css de bootstrap
-      $('#sofitech_adminbundle_customer_adresses_'+index).addClass("form-horizontal col-md-6");
+      $('#sofitech_adminbundle_customer_adresses').children('div').addClass('form-horizontal col-md-6');
+      $('#sofitech_adminbundle_customer_adresses').children('div').eq(0).addClass('tounwrap');
+ 
+      // $('#sofitech_adminbundle_customer_adresses_'+index).addClass("form-horizontal col-md-6");
+
       $('#sofitech_adminbundle_customer_adresses_'+index).children('div').addClass('form-group myform_'+index);
+      $('#sofitech_adminbundle_customer_adresses_1').parent().find('label').eq(0).hide();
+      
+      $('#sofitech_adminbundle_customer_adresses_'+index).wrap('<div class="panel panel-default"></div>');
+      $('#sofitech_adminbundle_customer_adresses_'+index).wrapInner('<div class="panel-body"></div>');
+      
       $('.myform_'+index).find("label").wrap('<div class="col-md-4" ></div>');
       $('.myform_'+index).find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
       $('.myform_'+index).find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
       $('#sofitech_adminbundle_customer_adresses_0_type').val("contact");
-      $('#sofitech_adminbundle_customer_adresses_0_type').parents().eq(1).hide();
-      $('#sofitech_adminbundle_customer_adresses_0').wrapInner('<div class="panel-body"></div>');
-      
-      $('#sofitech_adminbundle_customer_adresses_0').wrapInner('<div class=" panel panel-default"></div>');
-      $('#sofitech_adminbundle_customer_adresses_0').children('div').prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE</span></strong></div>');
-
-
+      $('#sofitech_adminbundle_customer_adresses_1_type').val("billing");
+      $('#sofitech_adminbundle_customer_adresses_'+index+'_type').parents().eq(1).hide();
      
 
       // Enfin, on incrémente le compteur pour que le prochain ajout se fasse avec un autre numéro
@@ -83,9 +87,28 @@
        $(this).find('label').eq(0).hide();
      });
 
-     $('.theform').append('<div class="form-horizontal col-md-12"> <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Ajouter</button></div>');
+      $('#sofitech_adminbundle_customer_adresses_0').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE CONTACT</span></strong></div>');
+      $('#sofitech_adminbundle_customer_adresses_1').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE PAIEMENT</span></strong> <div id="hideaddress" onclick="hideaddress()" class="pull-right"><span class=" glyphicon glyphicon-remove"></span></div></div>');
+      $('#sofitech_adminbundle_customer_adresses').unwrap();
+      $('.tounwrap').unwrap();
+      $('#sofitech_adminbundle_customer_adresses_1').parent().hide();
+      $('.tounwrap').append('<a id="newaddress" onclick="displayaddress()" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Ajouter une addresse</a>');
+      $('.theform').append('<div class="form-horizontal col-md-12"> <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Ajouter</button></div>');
+
+      $('.myform_1').find("input").removeAttr('required');
+      $('.myform_1').find("select").removeAttr('required');
 
   });
+  function displayaddress(){
+    $('#sofitech_adminbundle_customer_adresses_1').parent().show();
+    $('#newaddress').hide();
+  }
+
+  function hideaddress(){
+    $('#sofitech_adminbundle_customer_adresses_1').parent().hide();
+    $('#newaddress').show();
+  }
+
 </script>
 {% endblock %}
 
