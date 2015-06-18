@@ -12,12 +12,7 @@ use Doctrine\ORM\Mapping as ORM;
  */
 class Student extends Person
 {
-
-
-
-
-
-    
+ 
 
 
 }
