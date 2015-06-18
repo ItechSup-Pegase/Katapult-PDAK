@@ -1,13 +1,13 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 
 {% block leftmenu %}
-    <a href="{{ path('teacher_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un professeur</a>
+    <a href="{{ path('teacher_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter un formateur</a>
 {% endblock %}
 
 {% block content %}
     {% include 'SofitechAdminBundle::person.nav.html.twig' with {'active':'teacher'} %}
     <div class="col-md-12">
-        <h1>Liste des professeurs</h1>
+        <h1>Liste des formateurs</h1>
 
         <table class="table table-striped">
             <thead>
@@ -46,7 +46,7 @@
                       </div>
                       <div class="modal-footer">
                         {{ form_start(delete_forms[entity.id]) }}        
-                                <button type="submit" class="btn btn-danger"></span> Supprimer</button>
+                                <button type="submit" class="btn btn-danger"> Supprimer</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal"> Annuler</button>
                         {{ form_end(delete_forms[entity.id]) }}
                       </div>

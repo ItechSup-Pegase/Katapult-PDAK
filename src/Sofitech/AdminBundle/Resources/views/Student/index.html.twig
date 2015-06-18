@@ -22,7 +22,7 @@
             {% for entity in entities %}
                 <tr>
                     <td>{{ entity.lastname }}</td>
-                    <td>{{ entity.firstname }}</td
+                    <td>{{ entity.firstname }}</td>
                     {% block tabletd %}{% endblock %}
                     <td>
                     {% block personaction %}{% endblock %}
@@ -46,7 +46,7 @@
                       </div>
                       <div class="modal-footer">
                         {{ form_start(delete_forms[entity.id]) }}        
-                                <button type="submit" class="btn btn-danger"></span> Supprimer</button>
+                                <button type="submit" class="btn btn-danger"> Supprimer</button>
                                 <button type="button" class="btn btn-default" data-dismiss="modal"> Annuler</button>
                         {{ form_end(delete_forms[entity.id]) }}
                       </div>
