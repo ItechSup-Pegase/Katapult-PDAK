@@ -1,0 +1,19 @@
+<h1>Catégorie</h1>
+<div class="col-md-5">
+    <table class="table">
+        <tr>
+            <th>Intitulé</th>
+            <td>{{ entity.name }}</td>
+        </tr>
+        <tr>
+            <th>Déscription</th>
+            <td>{{ entity.description }}</td>
+        </tr>
+        {% if entity.parentCategory %}
+        <tr>
+            <th>Catégorie mère</th>
+            <td>{{ entity.parentCategory }}</td>
+        </tr>
+        {% endif %}
+    </table>
+</div>

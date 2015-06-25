@@ -15,10 +15,10 @@ class CategoryType extends AbstractType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         $builder
-            ->add('name')
-            ->add('description')
-            ->add('parentCategory')
-            ->add('formations')
+            ->add('name', 'text' , array('label' => 'Intitulé'))
+            ->add('description', 'text' , array('label' => 'Déscription'))
+            ->add('parentCategory','entity', array('label' => 'Catégorie mère','class' => 'SofitechAdminBundle:Category',))
+            //->add('formations')
         ;
     }
     
