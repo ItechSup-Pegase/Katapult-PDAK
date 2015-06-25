@@ -46,6 +46,20 @@ class Person
      */
     protected $email;
 
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="phone", type="string", length=255)
+     */
+    protected $phone;
+
+    /**
+     * @var string
+     *
+     * @ORM\Column(name="mobile", type="string", length=255, nullable=true)
+     */
+    protected $mobile;
+
     
     /**
      * @var string
@@ -151,6 +165,52 @@ class Person
     }
 
     /**
+     * Get phone
+     *
+     * @return string 
+     */
+    public function getPhone()
+    {
+        return $this->phone;
+    }
+
+    /**
+     * Set phone
+     *
+     * @param string $phone
+     * @return Person
+     */
+    public function setPhone($phone)
+    {
+        $this->phone = $phone;
+
+        return $this;
+    }
+
+    /**
+     * Set mobile
+     *
+     * @param string $mobile
+     * @return Person
+     */
+    public function setMobile($mobile)
+    {
+        $this->mobile = $mobile;
+
+        return $this;
+    }
+
+    /**
+     * Get mobile
+     *
+     * @return string 
+     */
+    public function getMobile()
+    {
+        return $this->mobile;
+    }
+
+    /**
      * Set gender
      *
      * @param string $gender
@@ -163,6 +223,8 @@ class Person
         return $this;
     }
 
+
+
     /**
      * Get gender
      *
@@ -172,6 +234,7 @@ class Person
     {
         return $this->gender;
     }
+
 
     /**
      * Set birthdate

@@ -28,6 +28,8 @@ class PersonType extends AbstractType
             ->add('lastname', 'text', array('label' => 'Nom'))
             ->add('firstname', 'text' , array('label' => 'Prénom'))
             ->add('email', 'email', array('label' => 'Mail'))
+            ->add('phone', 'text', array('label' => 'Téléphone'))
+            ->add('mobile', 'text', array('label' => 'Portable', 'required' => false))
             ->add('birthdate', 'date', 
                     array(
                         'label' => 'Date de naissance',

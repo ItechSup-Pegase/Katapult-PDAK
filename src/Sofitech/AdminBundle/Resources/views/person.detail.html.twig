@@ -2,31 +2,52 @@
     {% block leftmenu %}{% endblock %}
 	<h1>{% block personetype %}{% endblock %}</h1>
     <div class="col-md-5">
-        <table class="table">
-            <tr>
-                <th>Nom</th>
-                <td>{{ entity.firstname }}</td>
-            </tr>
-            <tr>
-                <th>Prénom</th>
-                <td>{{ entity.getLastname() }}</td>
-            </tr>
-            <tr>
-                <th>Mail</th>
-                <td>{{ entity.email }}</td>
-            </tr>
-            <tr>
-                <th>Sexe</th>
-                <td>{{ entity.gender }}</td>
-            </tr>   
-            <tr>
-                <th>Date de naissance</th>
-                <td>{{ entity.birthdate|date("d/m/Y") }}</td>
-            </tr> 
-
-            {% for adress in entity.adresses %}
-                {{ include('SofitechAdminBundle:Adress:detail.html.twig', { 'entity': adress }) }}
-            {% endfor %}
-
-        </table>
+        <div class="panel panel-default">
+          <div class="panel-heading"><label class="label label-default">Indentité</label></div>
+          <div class="panel-body table-responsive">
+            <table class="table table-condensed">
+                <tr>
+                    <th>Civilité</th>
+                    <td>{{ entity.gender == 'm' ? 'Monsieur' : 'Madame' }}</td>
+                </tr> 
+                <tr>
+                    <th>Nom</th>
+                    <td>{{ entity.firstname }}</td>
+                </tr>
+                <tr>
+                    <th>Prénom</th>
+                    <td>{{ entity.getLastname() }}</td>
+                </tr>
+                <tr>
+                    <th>Mail</th>
+                    <td>{{ entity.email }}</td>
+                </tr>
+                <tr>
+                    <th>Tel</th>
+                    <td>{{ entity.phone }}</td>
+                </tr>
+                <tr>
+                    <th>Portable</th>
+                    <td>{{ entity.mobile }}</td>
+                </tr>  
+                <tr>
+                    <th>Date de naissance</th>
+                    <td>{{ entity.birthdate|date("d/m/Y") }}</td>
+                </tr>
+            </table>
+          </div>
+        </div>
     </div>
+    
+    {% for adress in entity.adresses %}
+        <div class="col-md-5">
+            <div class="panel panel-default">
+              <div class="panel-heading"><label class="label label-default">Adresse de {{ adress.type == 'contact' ? 'contact' : 'facturation' }}</label></div>
+              <div class="panel-body table-responsive">
+                <table class="table table-condensed">
+                    {{ include('SofitechAdminBundle:Adress:detail.html.twig', { 'entity': adress }) }}
+                </table>
+                </div>
+            </div>
+        </div>                
+    {% endfor %}
