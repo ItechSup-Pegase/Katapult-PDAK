@@ -72,6 +72,10 @@ class Adress
         $this->companies = new ArrayCollection();
     }
 
+    public function __toString(){
+        return $this->city;
+    }
+
 
     /**
      * Get id

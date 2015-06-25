@@ -106,4 +106,8 @@ class Company
     {
         return $this->adresses;
     }
+
+    public function __toString(){
+        return $this->name;
+    }
 }

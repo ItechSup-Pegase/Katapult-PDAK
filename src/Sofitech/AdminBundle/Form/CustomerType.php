@@ -16,7 +16,7 @@ class CustomerType extends PersonType
     {
         parent::buildForm($builder, $options);
         $builder
-            // ->add('company')
+            ->add('company', 'entity', array('label' => 'Entreprise', 'required' => false, 'class' => 'SofitechAdminBundle:Company'))
         ;
     }
     

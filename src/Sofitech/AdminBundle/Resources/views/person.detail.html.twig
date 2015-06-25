@@ -1,7 +1,7 @@
 
     {% block leftmenu %}{% endblock %}
 	<h1>{% block personetype %}{% endblock %}</h1>
-    <div class="col-md-5">
+    <div class="col-md-6">
         <div class="panel panel-default">
           <div class="panel-heading"><label class="label label-default">Indentité</label></div>
           <div class="panel-body table-responsive">
@@ -40,7 +40,7 @@
     </div>
     
     {% for adress in entity.adresses %}
-        <div class="col-md-5">
+        <div class="col-md-6">
             <div class="panel panel-default">
               <div class="panel-heading"><label class="label label-default">Adresse de {{ adress.type == 'contact' ? 'contact' : 'facturation' }}</label></div>
               <div class="panel-body table-responsive">
