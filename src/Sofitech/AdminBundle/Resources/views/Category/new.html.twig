@@ -1,15 +1,38 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Category creation</h1>
-
-    {{ form(form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('category') }}">
-            Back to the list
-        </a>
-    </li>
-</ul>
+{% extends 'SofitechAdminBundle::layout.html.twig' %}
+{% block leftmenu %}
+    <a href="{{ path('category') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des catégories</a>
 {% endblock %}
+{% block content -%}
+    <h1>Ajouter une catégorie</h1>
+    {{ form_start(form) }}
+    <div class="form-horizontal col-md-12 theform">
+        <div class="form-horizontal col-md-10">
+            <div class=" panel panel-default">
+                <div class="panel-heading"><strong><span class="label label-default">CATEGORIE</span></strong></div>
+                <div class="panel-body">
+                    {% for item in form if item.vars['name'] != '_token' %}
+                        {% if item.vars['name'] != 'adresses' %}
+
+                            <div class="form-group">
+                                <div class="col-md-4">
+                                    {{ form_label(item) }}
+                                </div>
+                                <div class="col-md-7">
+                                    {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+                                </div>
+                            </div>
+
+                        {% endif %}
+                    {% endfor %}
+                </div>
+            </div>
+        </div>
+        {{ form_widget(form._token) }}
+        {{ form_end(form) }}
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    {{ parent() }}
+{% endblock %}
+

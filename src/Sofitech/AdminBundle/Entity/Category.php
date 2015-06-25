@@ -37,11 +37,15 @@ class Category
     protected $description;
 
     /**
-     * @var \stdClass
-     *
-     * @ORM\Column(name="parentCategory", type="object", nullable=true)
-     */
-    protected $parentCategory = null;
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     **/
+    protected $childrenCategory;
+
+    /**
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
+     **/
+    protected $parentCategory;
 
     /**
      * @ORM\ManyToMany(targetEntity="Formation", mappedBy="categories")
@@ -50,7 +54,13 @@ class Category
     protected $formations;
 
     public function __construct(){
+        $this->childrenCategory = new ArrayCollection();
         $this->formations = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->name;
     }
 
     /**
@@ -109,30 +119,31 @@ class Category
         return $this->description;
     }
 
-    /**
-     * Set parentCategory
-     *
-     * @param \stdClass $parentCategory
-     * @return Category
-     */
-    public function setParentCategory($parentCategory)
-    {
-        $this->parentCategory = $parentCategory;
-
-        return $this;
-    }
-
-    /**
-     * Get parentCategory
-     *
-     * @return \stdClass 
-     */
     public function getParentCategory()
     {
         return $this->parentCategory;
     }
 
-        /**
+    public function setParentCategory( Category $parent = NULL )
+    {
+        $this->parentCategory = $parent;
+
+        return $this;
+    }
+
+    public function getChildrenCategory()
+    {
+        return $this->childrenCategory;
+    }
+
+    public function setChildrenCategory( ArrayCollection $children )
+    {
+        $this->childrenCategory= $children;
+
+        return $this;
+    }
+
+     /**
      * Add formations
      *
      * @param \Sofitech\AdminBundle\Entity\Formation $formations
