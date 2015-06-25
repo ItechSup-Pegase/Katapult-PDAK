@@ -31,8 +31,14 @@ class CustomerController extends Controller
 
         $entities = $em->getRepository('SofitechAdminBundle:Customer')->findAll();
 
+        $deleteForms = array();
+        foreach ($entities as $entity) {
+            $deleteForms[$entity->getId()] = $this->createDeleteForm($entity->getId())->createView();
+        }
+
         return array(
             'entities' => $entities,
+            'delete_forms' => $deleteForms,
         );
     }
     /**
@@ -240,7 +246,7 @@ class CustomerController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('customer_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
+            // ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }

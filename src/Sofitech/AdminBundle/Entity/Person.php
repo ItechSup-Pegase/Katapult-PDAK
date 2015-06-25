@@ -13,6 +13,7 @@ use Doctrine\Common\Collections\ArrayCollection;
  * @ORM\DiscriminatorColumn(name="discr", type="string")
  * @ORM\DiscriminatorMap({"student" = "Student", "teacher" = "Teacher", "customer" = "Customer"})
  */
+
 class Person
 {
     /**
@@ -41,7 +42,7 @@ class Person
     /**
      * @var string
      *
-     * @ORM\Column(name="email", type="string", length=255)
+     * @ORM\Column(name="email", type="string", length=255, unique=true)
      */
     protected $email;
 

@@ -4,6 +4,9 @@
 {% endblock %}
 {% block content -%}
     <h1>Ajouter client</h1>
+{% if error %}
+  toolo
+{% endif %}
 {{ form_start(form) }}
     <div class="form-horizontal col-md-12 theform">
     	<div class="form-horizontal col-md-6">
@@ -88,11 +91,11 @@
      });
 
       $('#sofitech_adminbundle_customer_adresses_0').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE CONTACT</span></strong></div>');
-      $('#sofitech_adminbundle_customer_adresses_1').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE PAIEMENT</span></strong> <div id="hideaddress" onclick="hideaddress()" class="pull-right"><span class=" glyphicon glyphicon-remove"></span></div></div>');
+      $('#sofitech_adminbundle_customer_adresses_1').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE FACTURATION</span></strong> <div id="hideaddress" onclick="hideaddress()" class="pull-right"><span class=" glyphicon glyphicon-remove"></span></div></div>');
       $('#sofitech_adminbundle_customer_adresses').unwrap();
       $('.tounwrap').unwrap();
       $('#sofitech_adminbundle_customer_adresses_1').parent().hide();
-      $('.tounwrap').append('<a id="newaddress" onclick="displayaddress()" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Ajouter une addresse</a>');
+      $('.tounwrap').append('<a id="newaddress" onclick="displayaddress()" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Adresse de facturation différente</a>');
       $('.theform').append('<div class="form-horizontal col-md-12"> <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span>Ajouter</button></div>');
 
       $('.myform_1').find("input").removeAttr('required');
@@ -102,11 +105,25 @@
   function displayaddress(){
     $('#sofitech_adminbundle_customer_adresses_1').parent().show();
     $('#newaddress').hide();
+    $('#sofitech_adminbundle_customer_adresses_1_street').val('');
+    $('#sofitech_adminbundle_customer_adresses_1_city').val('');
+    $('#sofitech_adminbundle_customer_adresses_1_zipcode').val('');
+    $('#sofitech_adminbundle_customer_adresses_1_country').val('');
   }
 
   function hideaddress(){
     $('#sofitech_adminbundle_customer_adresses_1').parent().hide();
     $('#newaddress').show();
+    $('#sofitech_adminbundle_customer_adresses_1_street').val($('#sofitech_adminbundle_customer_adresses_0_street').val());
+    $('#sofitech_adminbundle_customer_adresses_1_city').val($('#sofitech_adminbundle_customer_adresses_0_city').val());
+    $('#sofitech_adminbundle_customer_adresses_1_zipcode').val($('#sofitech_adminbundle_customer_adresses_0_zipcode').val());
+    $('#sofitech_adminbundle_customer_adresses_1_country').val($('#sofitech_adminbundle_customer_adresses_0_country').val());
+  }
+
+  function duplicateOnBlur(id){
+    var value = $('#'+id).val();
+    id = id.replace('0', '1');
+    $('#'+id).val(value);
   }
 
 </script>

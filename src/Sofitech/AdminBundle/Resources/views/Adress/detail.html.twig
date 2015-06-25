@@ -1,20 +1,20 @@
 
         <tr>
-            <td colspan="2"> Adresse de {{ entity.type }}</td>
+            <td colspan="2" bgcolor="orange"> Adresse de {{ entity.type == 'contact' ? 'contact' : 'facturation' }}</td>
         </tr>
         <tr>
-            <th>Street</th>
+            <th>Adresse</th>
             <td>{{ entity.street }}</td>
         </tr>
         <tr>
-            <th>City</th>
+            <th>Ville</th>
             <td>{{ entity.city }}</td>
         </tr>
         <tr>
-            <th>Zipcode</th>
+            <th>Code postal</th>
             <td>{{ entity.zipcode }}</td>
         </tr>
         <tr>
-            <th>Country</th>
+            <th>Pays</th>
             <td>{{ entity.country }}</td>
  		</tr>

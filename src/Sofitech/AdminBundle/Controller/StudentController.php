@@ -58,12 +58,19 @@ class StudentController extends Controller
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
-        if ($form->isValid()) {
-            $em = $this->getDoctrine()->getManager(); 
-            $em->persist($entity);
-            $em->flush();
 
-            return $this->redirect($this->generateUrl('student_show', array('id' => $entity->getId())));
+        try{
+            if($form->isValid()){
+                $em = $this->getDoctrine()->getManager(); 
+                $em->persist($entity);
+                $em->flush();
+            }   
+        }catch(\Exception $e){
+           $this->get('session')->getFlashBag()->add('error', $e->getMessage());
+           // $this->get('logger')->error($e->getMessage());
+           dump($e->getMessage());
+           dump($this->get('session')->getFlashBag());
+           return $this->redirect($this->getRequest()->headers->get('referer'));
         }
 
         return array(

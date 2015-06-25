@@ -16,10 +16,10 @@ class AdressType extends AbstractType
     {
         $builder
             ->add('type', 'text', array('label' => 'Type'))
-            ->add('street', 'text', array('label' => 'Rue'))
-            ->add('city', 'text', array('label' => 'Ville'))
-            ->add('zipcode', 'text', array('label' => 'Code postal'))
-            ->add('country', 'text', array('label' => 'Pays'))
+            ->add('street', 'text', array('label' => 'Adresse', 'attr' => array('onblur' => 'duplicateOnBlur(this.id)')))
+            ->add('city', 'text', array('label' => 'Ville', 'attr' => array('onblur' => 'duplicateOnBlur(this.id)')))
+            ->add('zipcode', 'text', array('label' => 'Code postal', 'attr' => array('onblur' => 'duplicateOnBlur(this.id)')))
+            ->add('country', 'text', array('label' => 'Pays', 'attr' => array('onblur' => 'duplicateOnBlur(this.id)')))
         ;
     }
     
