@@ -5,7 +5,8 @@
 {% endblock %}
 
 {% block content %}
-    {% include 'SofitechAdminBundle::formation.nav.html.twig' with {'active':'informatique'} %}
+    {{ dump(maincategories) }}
+    {% include 'SofitechAdminBundle::formation.nav.html.twig' with {'active':'informatique', } %}
     <div class="col-md-12">
         <h1>Liste des formations</h1>
 

@@ -10,6 +10,8 @@ use Doctrine\Common\Collections\ArrayCollection;
  *
  * @ORM\Table()
  * @ORM\Entity
+ * @ORM\Entity(repositoryClass="Sofitech\AdminBundle\Entity\CategoryRepository")
+ *
  */
 class Category
 {

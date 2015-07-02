@@ -17,7 +17,7 @@ class CategoryType extends AbstractType
         $builder
             ->add('name', 'text' , array('label' => 'Intitulé'))
             ->add('description', 'text' , array('label' => 'Déscription'))
-            ->add('parentCategory','entity', array('label' => 'Catégorie mère','class' => 'SofitechAdminBundle:Category',))
+            ->add('parentCategory','entity', array('label' => 'Catégorie mère', 'class' => 'SofitechAdminBundle:Category','required' => false,'empty_value' => '','empty_data'  => null))
             //->add('formations')
         ;
     }

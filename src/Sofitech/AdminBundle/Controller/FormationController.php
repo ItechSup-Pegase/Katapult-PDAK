@@ -9,6 +9,8 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Sensio\Bundle\FrameworkExtraBundle\Configuration\Template;
 use Sofitech\AdminBundle\Entity\Formation;
 use Sofitech\AdminBundle\Form\FormationType;
+use Sofitech\AdminBundle\Entity\Category;
+use Sofitech\AdminBundle\Entity\CategoryRepository;
 
 /**
  * Formation controller.
@@ -30,9 +32,11 @@ class FormationController extends Controller
         $em = $this->getDoctrine()->getManager();
 
         $entities = $em->getRepository('SofitechAdminBundle:Formation')->findAll();
+        $maincategories = $em->getRepository('SofitechAdminBundle:Category')->findAllMainCategories();
 
         return array(
             'entities' => $entities,
+            'maincategories' => $maincategories,
         );
     }
     /**
