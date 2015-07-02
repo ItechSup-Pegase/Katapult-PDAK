@@ -1,31 +1,6 @@
-
-	{% if active == "student" %}
-		<ul class="nav nav-tabs">
-		  <li role="presentation"><a href="{{ path('customer') }}"><span class="glyphicon glyphicon-usd"></span> Client</a></li>
-		  <li role="presentation" class="active"><a href="{{ path('student') }}"><span class="glyphicon glyphicon-education"></span> Etudiant</a></li>
-		  <li role="presentation"><a href="{{ path('teacher') }}"><span class="glyphicon glyphicon-blackboard"></span> Formateur</a></li>
-		</ul>
-
-	{% elseif active == "teacher" %}
-		<ul class="nav nav-tabs">
-		  <li role="presentation"><a href="{{ path('customer') }}"><span class="glyphicon glyphicon-usd"></span> Client</a></li>
-		  <li role="presentation"><a href="{{ path('student') }}"><span class="glyphicon glyphicon-education"></span> Etudiant</a></li>
-		  <li role="presentation" class="active"><a href="{{ path('teacher') }}"><span class="glyphicon glyphicon-blackboard"></span> Formateur</a></li>
-		</ul>
-
-	{% elseif active == "customer" %}
-		<ul class="nav nav-tabs">
-		  <li role="presentation"class="active"><a href="{{ path('customer') }}"><span class="glyphicon glyphicon-usd"></span> Client</a></li>
-		  <li role="presentation"><a href="{{ path('student') }}"><span class="glyphicon glyphicon-education"></span> Etudiant</a></li>
-		  <li role="presentation"><a href="{{ path('teacher') }}"><span class="glyphicon glyphicon-blackboard"></span> Formateur</a></li>
-		</ul>
-
-	{% else %}
-		<ul class="nav nav-tabs">
-		  <li role="presentation"><a href="{{ path('customer') }}"><span class="glyphicon glyphicon-usd"></span> Client</a></li>
-		  <li role="presentation"><a href="{{ path('student') }}"><span class="glyphicon glyphicon-education"></span> Etudiant</a></li>
-		  <li role="presentation"><a href="{{ path('teacher') }}"><span class="glyphicon glyphicon-blackboard"></span> Formateur</a></li>
-		</ul>
-
-	{% endif %}
+<ul class="nav nav-tabs">
+  <li role="presentation" {{ active == "customer" ? 'class="active"' : '' }}><a href="{{ path('customer') }}"><span class="glyphicon glyphicon-usd"></span> Client</a></li>
+  <li role="presentation" {{ active == "student" ? 'class="active"' : '' }}><a href="{{ path('student') }}"><span class="glyphicon glyphicon-education"></span> Etudiant</a></li>
+  <li role="presentation" {{ active == "teacher" ? 'class="active"' : '' }}><a href="{{ path('teacher') }}"><span class="glyphicon glyphicon-blackboard"></span> Formateur</a></li>
+</ul>
 
