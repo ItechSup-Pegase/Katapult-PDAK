@@ -14,8 +14,9 @@ use Doctrine\Common\Collections\ArrayCollection;
 class Customer extends Person
 {
     /**
-     * @ORM\ManyToOne(targetEntity="Company")
-     * @ORM\JoinColumn(name="company_id", referencedColumnName="id")
+     * @var string
+     *
+     * @ORM\Column(name="type", type="string", length=255, nullable=true)")
      **/
     protected $company;
 

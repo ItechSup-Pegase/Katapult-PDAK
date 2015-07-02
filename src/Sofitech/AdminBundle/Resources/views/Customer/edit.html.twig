@@ -1,16 +1,89 @@
-{% extends '::base.html.twig' %}
-
-{% block body -%}
-    <h1>Customer edit</h1>
-
-    {{ form(edit_form) }}
-
-        <ul class="record_actions">
-    <li>
-        <a href="{{ path('customer') }}">
-            Back to the list
-        </a>
-    </li>
-    <li>{{ form(delete_form) }}</li>
-</ul>
+{% extends 'SofitechAdminBundle::layout.html.twig' %}
+{% block leftmenu %}
+       <a href="{{ path('customer') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des clients</a>     
 {% endblock %}
+{% block content -%}
+    <h1>Editer informations client</h1>
+{{ form_start(edit_form) }}
+    <div class="form-horizontal col-md-12 theform">
+        <div class="form-horizontal col-md-6">
+            <div class=" panel panel-default">
+            <div class="panel-heading"><strong><span class="label label-default">IDENTITÉ</span></strong></div>
+                <div class="panel-body">
+                {% for item in edit_form if item.vars['name'] != '_token' %}
+                    {% if item.vars['name'] != 'adresses' %}
+
+                        <div class="form-group">
+                            <div class="col-md-4">
+                                {{ form_label(item) }}
+                            </div>
+                            <div class="col-md-7">
+                                {{ form_widget(item, {'attr' : {'class' : 'form-control'}} ) }}
+                            </div>
+                        </div>
+                        
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </div>
+        </div>
+        
+        
+        {{ form_widget(edit_form._token) }}  
+       {#  <div class="form-horizontal col-md-12">
+        <button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter</button>  
+    </div> #}
+{{ form_end(edit_form) }}
+</div>
+{% endblock %}
+
+{% block javascripts %} 
+    {{ parent() }}
+    <script type="text/javascript">
+  $(document).ready(function() {
+     // On récupère la balise <div> en question qui contient l'attribut « data-prototype » qui nous intéresse.
+    var $container = $('div#sofitech_adminbundle_customer_adresses');
+    // $container.addClass("col-md-12");
+    $('#sofitech_adminbundle_customer_adresses').children('div').addClass('form-horizontal col-md-6');
+      $('#sofitech_adminbundle_customer_adresses').children('div').eq(0).addClass('tounwrap');
+ 
+      // $('#sofitech_adminbundle_customer_adresses_'+index).addClass("form-horizontal col-md-6");
+
+      $('#sofitech_adminbundle_customer_adresses_0').children('div').addClass('form-group myform_0');
+      $('#sofitech_adminbundle_customer_adresses_1').children('div').addClass('form-group myform_1');
+      $('#sofitech_adminbundle_customer_adresses_1').parent().find('label').eq(0).hide();
+      
+      $('#sofitech_adminbundle_customer_adresses_0').wrap('<div class="panel panel-default"></div>');
+      $('#sofitech_adminbundle_customer_adresses_1').wrap('<div class="panel panel-default"></div>');
+      $('#sofitech_adminbundle_customer_adresses_0').wrapInner('<div class="panel-body"></div>');
+      $('#sofitech_adminbundle_customer_adresses_1').wrapInner('<div class="panel-body"></div>');
+      
+      $('.myform_0').find("label").wrap('<div class="col-md-4" ></div>');
+      $('.myform_0').find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+      $('.myform_0').find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+
+      $('.myform_1').find("label").wrap('<div class="col-md-4" ></div>');
+      $('.myform_1').find("input").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+      $('.myform_1').find("select").wrap('<div class="col-md-7" ></div>').addClass('form-control');
+
+      $('#sofitech_adminbundle_customer_adresses_0_type').val("contact");
+      $('#sofitech_adminbundle_customer_adresses_1_type').val("billing");
+      $('#sofitech_adminbundle_customer_adresses_0_type').parents().eq(1).hide();
+      $('#sofitech_adminbundle_customer_adresses_1_type').parents().eq(1).hide();
+
+    // masquage des labels §§§
+    $('div:not([class])').each( function(){
+    $(this).find('label').eq(0).hide();
+    });
+
+    $('#sofitech_adminbundle_customer_adresses_0').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE CONTACT</span></strong></div>');
+      $('#sofitech_adminbundle_customer_adresses_1').parent().prepend('<div class="panel-heading"><strong><span class="label label-default">ADRESSE DE FACTURATION</span></strong></div>');
+      $('#sofitech_adminbundle_customer_adresses').unwrap();
+      $('.tounwrap').unwrap();
+
+    $('.theform').append('<div class="form-horizontal col-md-12"><button type="submit" class="btn btn-default"><span class="glyphicon glyphicon-edit"></span> Modifier</button></div>');
+
+  });
+</script>
+{% endblock %}
+

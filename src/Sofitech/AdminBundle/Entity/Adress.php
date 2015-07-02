@@ -63,14 +63,6 @@ class Adress
      */
     protected $persons;
 
-    /**
-     * @ORM\ManyToMany(targetEntity="Company", mappedBy="adresses")
-     */
-    protected $companies;
-
-    public function __construct(){
-        $this->companies = new ArrayCollection();
-    }
 
     public function __toString(){
         return $this->city;
@@ -242,38 +234,5 @@ class Adress
     public function removePerson(\Sofitech\AdminBundle\Entity\Person $persons)
     {
         $this->persons->removeElement($persons);
-    }
-
-    /**
-     * Add companies
-     *
-     * @param \Sofitech\AdminBundle\Entity\Company $companies
-     * @return Adress
-     */
-    public function addCompany(\Sofitech\AdminBundle\Entity\Company $companies)
-    {
-        $this->companies[] = $companies;
-
-        return $this;
-    }
-
-    /**
-     * Remove companies
-     *
-     * @param \Sofitech\AdminBundle\Entity\Company $companies
-     */
-    public function removeCompany(\Sofitech\AdminBundle\Entity\Company $companies)
-    {
-        $this->companies->removeElement($companies);
-    }
-
-    /**
-     * Get companies
-     *
-     * @return \Doctrine\Common\Collections\Collection 
-     */
-    public function getCompanies()
-    {
-        return $this->companies;
     }
 }
