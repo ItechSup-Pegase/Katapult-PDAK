@@ -2,7 +2,8 @@
 {% block leftmenu %}
        <a href="{{ path('customer') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des clients</a>     
 {% endblock %}
-{% block content -%}
+{% block content %}
+  {% include 'SofitechAdminBundle::person.nav.html.twig' with {'active':'customer'} %}
     <h1>Editer informations client</h1>
 {{ form_start(edit_form) }}
     <div class="form-horizontal col-md-12 theform">

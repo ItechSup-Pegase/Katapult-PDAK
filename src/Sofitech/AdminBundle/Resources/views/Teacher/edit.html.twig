@@ -2,7 +2,8 @@
 {% block leftmenu %}
        <a href="{{ path('teacher') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des formateur</a>     
 {% endblock %}
-{% block content -%}
+{% block content %}
+    {% include 'SofitechAdminBundle::person.nav.html.twig' with {'active':'teacher'} %}
     <h1>Modifier formateur</h1>
 {{ form_start(edit_form) }}
     <div class="form-horizontal col-md-12 theform">

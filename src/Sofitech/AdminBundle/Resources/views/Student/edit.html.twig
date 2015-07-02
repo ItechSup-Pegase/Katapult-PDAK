@@ -3,7 +3,8 @@
        <a href="{{ path('student') }}" class="btn btn-default"><span class="glyphicon glyphicon-list-alt"></span> Liste des étudiants</a>     
 {% endblock %}
 {% block content -%}
-    <h1>Ajouter étudiant</h1>
+{% include 'SofitechAdminBundle::person.nav.html.twig' with {'active':'student'} %}
+    <h1>Editer informations étudiant</h1>
 {{ form_start(edit_form) }}
     <div class="form-horizontal col-md-12 theform">
         <div class="form-horizontal col-md-6">

@@ -14,6 +14,7 @@
     </ul>
 {% endblock %}
 {% block content %}
+  {% include 'SofitechAdminBundle::person.nav.html.twig' with {'active':'customer'} %}
     {% include 'SofitechAdminBundle:Customer:detail.html.twig' %}
 <div class="modal fade" id="myModal">
   <div class="modal-dialog">
