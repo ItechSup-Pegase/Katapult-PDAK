@@ -22,6 +22,10 @@ class StudentType extends PersonType
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
         parent::buildForm($builder, $options);
+        $builder
+            ->add('customer','entity', array('label' => 'Entreprise', 'class' => 'SofitechAdminBundle:Customer','required' => false,'empty_value' => '','empty_data'  => null))
+            // ->add('customer', 'text', array('label' => 'Client', 'required' => false))
+        ;
             
     }
 

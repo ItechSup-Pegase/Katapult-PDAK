@@ -21,6 +21,20 @@ class Customer extends Person
     protected $company;
 
     /**
+     * @ORM\OneToMany(targetEntity="Student", mappedBy="customer")
+     **/
+    private $students;
+
+    public function __construct() {
+        $this->students = new ArrayCollection();
+    }
+
+    public function __toString()
+    {
+        return $this->company;
+    }
+
+    /**
      * Set company
      *
      * @param string $company

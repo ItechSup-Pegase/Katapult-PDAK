@@ -1,9 +1,16 @@
 
 {% if active == "informatique" %}
-    <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation"><a href="{{ path('formation') }}">Histoire</a></li>
         <li role="presentation"><a href="{{ path('formation') }}">Economie</a></li>
-        <li role="presentation" class="active"><a href="{{ path('formation') }}">Informatique</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Droit</a></li>
         <li role="presentation"><a href="{{ path('formation') }}">Ressources humaines</a></li>
+    </ul>
+    <ul class="nav nav-tabs nav-justified">
+        <li role="presentation"><a href="{{ path('formation') }}">Bureautique</a></li>
+        <li role="presentation"><a href="{{ path('formation') }}">Réseau</a></li>
+        <li role="presentation" class="active"><a href="{{ path('formation') }}">Informatique</a></li>
+        <li role="presentation" class=""><a href="{{ path('formation') }}">Gestion</a></li>
     </ul>
 
 {% elseif active == "economie" %}

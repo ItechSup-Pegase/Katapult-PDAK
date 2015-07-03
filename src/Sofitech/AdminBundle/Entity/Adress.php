@@ -39,6 +39,13 @@ class Adress
     /**
      * @var string
      *
+     * @ORM\Column(name="street2", type="string", length=255, nullable=true)
+     */
+    protected $street2;
+
+    /**
+     * @var string
+     *
      * @ORM\Column(name="city", type="string", length=255)
      */
     protected $city;
@@ -123,6 +130,29 @@ class Adress
     public function getStreet()
     {
         return $this->street;
+    }
+
+    /**
+     * Set street2
+     *
+     * @param string $street
+     * @return Adress
+     */
+    public function setStreet2($street)
+    {
+        $this->street2 = $street;
+
+        return $this;
+    }
+
+    /**
+     * Get street2
+     *
+     * @return string 
+     */
+    public function getStreet2()
+    {
+        return $this->street2;
     }
 
     /**

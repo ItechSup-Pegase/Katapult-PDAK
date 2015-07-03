@@ -39,6 +39,7 @@ class FormationController extends Controller
             'maincategories' => $maincategories,
         );
     }
+
     /**
      * Creates a new Formation entity.
      *
