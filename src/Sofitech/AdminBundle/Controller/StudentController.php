@@ -134,8 +134,6 @@ class StudentController extends Controller
 
         $deleteForm = $this->createDeleteForm($id);
 
-        dump($entity);
-
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -211,7 +209,7 @@ class StudentController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('student_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('student_show', array('id' => $id)));
         }
 
         return array(

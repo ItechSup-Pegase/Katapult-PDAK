@@ -123,7 +123,6 @@ class CustomerController extends Controller
         }
 
         $deleteForm = $this->createDeleteForm($id);
-
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
@@ -199,7 +198,7 @@ class CustomerController extends Controller
         if ($editForm->isValid()) {
             $em->flush();
 
-            return $this->redirect($this->generateUrl('customer_edit', array('id' => $id)));
+            return $this->redirect($this->generateUrl('customer_show', array('id' => $id)));
         }
 
         return array(
