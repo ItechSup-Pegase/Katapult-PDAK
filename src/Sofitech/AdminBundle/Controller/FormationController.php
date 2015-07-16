@@ -35,6 +35,7 @@ class FormationController extends Controller
         $maincategories = $em->getRepository('SofitechAdminBundle:Category')->findAllMainCategories();
 
         return array(
+            'ajouterformation' => false,
             'entities' => $entities,
             'maincategories' => $maincategories,
         );
@@ -89,7 +90,7 @@ class FormationController extends Controller
     /**
      * Displays a form to create a new Formation entity.
      *
-     * @Route("/new", name="formation_new")
+     * @Route("/new/{id}", name="formation_new")
      * @Method("GET")
      * @Template()
      */
@@ -126,6 +127,28 @@ class FormationController extends Controller
         return array(
             'entity'      => $entity,
             'delete_form' => $deleteForm->createView(),
+        );
+    }
+
+    /**
+     * Finds and displays a Formation entity.
+     *
+     * @Route("/category/{active}", name="formation_liste")
+     * @Method("GET")
+     */
+    public function listeAction($active)
+    {
+        $em = $this->getDoctrine()->getManager();
+
+        $entities = $em->getRepository('SofitechAdminBundle:Formation')->findAll();
+        $maincategories = $em->getRepository('SofitechAdminBundle:Category')->findAllMainCategories();
+
+        return $this->render(
+            'SofitechAdminBundle:Formation:index.html.twig',
+            array('active_category' => $active,
+                'ajouterformation' => true,
+                'entities' => $entities,
+                'maincategories' => $maincategories,)
         );
     }
 
@@ -245,7 +268,6 @@ class FormationController extends Controller
         return $this->createFormBuilder()
             ->setAction($this->generateUrl('formation_delete', array('id' => $id)))
             ->setMethod('DELETE')
-            ->add('submit', 'submit', array('label' => 'Delete'))
             ->getForm()
         ;
     }
