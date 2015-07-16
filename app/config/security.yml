@@ -69,4 +69,4 @@ security:
         - { path: ^/student/, role: ROLE_ADMIN }
         - { path: ^/customer/, role: ROLE_ADMIN }
         - { path: ^/teacher/, role: ROLE_ADMIN }
-        # - { path: ^/, role: ROLE_ADMIN }
+        - { path: ^/, role: ROLE_ADMIN }
