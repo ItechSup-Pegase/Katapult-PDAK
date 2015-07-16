@@ -4,6 +4,8 @@
 {% endblock %}
 {% block content -%}
     <h1>Ajouter une formation</h1>
+
+    {{ dump(form) }}
     {{ form_start(form) }}
     <div class="form-horizontal col-md-12">
         <div class="form-horizontal col-md-6">

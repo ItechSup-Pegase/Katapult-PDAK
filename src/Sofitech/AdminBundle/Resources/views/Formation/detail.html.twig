@@ -1,18 +1,11 @@
 {% extends 'SofitechAdminBundle::layout.html.twig' %}
 
 {% block leftmenu %}
-    {% if ajouterformation %}
-        <a href="{{ path('formation_new',{ 'id': active_category}) }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter une formation</a>
-    {% endif %}
-    <a href="{{ path('category_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter une catégorie</a>
+    <a href="{{ path('formation_new') }}" class="btn btn-default"><span class="glyphicon glyphicon-plus"></span> Ajouter une formation</a>
 {% endblock %}
 
 {% block content %}
-    {% if active_category is defined %}
-    {% else %}
-        {% set active_category = null%}
-    {% endif %}
-    {% include 'SofitechAdminBundle::formation.nav.html.twig' with {'active': active_category, 'maincategories' : maincategories} %}
+    {% include 'SofitechAdminBundle::formation.nav.html.twig' with {'active':'informatique', 'maincategories' : maincategories %}
     <div class="col-md-12">
         <h1>Liste des formations</h1>
 
@@ -31,7 +24,7 @@
                 <tr>
                     <td>{{ entity.name }}</td>
                     <td>{{ entity.description }}</td>
-                    <td>{{ entity.duration }}</td>
+                    <td>{{ entity.duration }}</td>,
                     {% block tabletd %}{% endblock %}
                     <td>
                         {% block personaction %}{% endblock %}

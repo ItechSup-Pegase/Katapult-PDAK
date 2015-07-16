@@ -2,3 +2,7 @@ services:
 #    sofitech_admin.example:
 #        class: Sofitech\AdminBundle\Example
 #        arguments: [@service_id, "plain_value", %parameter%]
+    acme_demo_bundle.datalist_type_extension:
+        class: Sofitech\AdminBundle\Form\Extension\DatalistTypeExtension
+        tags:
+            - { name: form.type_extension, alias: entity }
