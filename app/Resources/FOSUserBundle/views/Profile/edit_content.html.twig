@@ -2,13 +2,13 @@
 <form action="{{ path('fos_user_profile_edit') }}" {{ form_enctype(form) }} method="POST" class="fos_user_profile_edit">
     <div id="fos_user_change_password_form">
     	<div class="form-group col-md-7">
-	     <input type="text" id="fos_user_profile_form_username" name="fos_user_profile_form[username]" required="required" maxlength="255" pattern=".{2,}" value="{{ form.vars.value.username }}" />
+	     <input type="text" id="fos_user_profile_form_username" name="fos_user_profile_form[username]" class="form-control" required="required" maxlength="255" pattern=".{2,}" value="{{ form.vars.value.username }}" />
 	    </div>
 	    <div class="form-group col-md-7">
-	    	<input type="email" id="fos_user_profile_form_email" name="fos_user_profile_form[email]" required="required" value="{{ form.vars.value.email }}" />
+	    	<input type="email" id="fos_user_profile_form_email" name="fos_user_profile_form[email]" class="form-control" required="required" value="{{ form.vars.value.email }}" />
 	    </div>
 	    <div class="form-group col-md-7">
-		<input type="password" id="fos_user_profile_form_current_password" name="fos_user_profile_form[current_password]" required="required" placeholder="Password" />
+		<input type="password" id="fos_user_profile_form_current_password" class="form-control" name="fos_user_profile_form[current_password]" required="required" placeholder="Password" />
 	    </div>
 	    <div class="form-group col-md-7">
 	    	{{ form_widget(form._token) }}
