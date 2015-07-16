@@ -75,11 +75,12 @@ class FormationController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Formation $entity)
+    private function createCreateForm(Formation $entity, $id)
     {
         $form = $this->createForm(new FormationType(), $entity, array(
             'action' => $this->generateUrl('formation_create'),
             'method' => 'POST',
+            'attr' => array('idCategory' => $id),
         ));
 
         //$form->add('submit', 'submit', array('label' => 'Create'));
@@ -94,10 +95,10 @@ class FormationController extends Controller
      * @Method("GET")
      * @Template()
      */
-    public function newAction()
+    public function newAction($id)
     {
         $entity = new Formation();
-        $form   = $this->createCreateForm($entity);
+        $form   = $this->createCreateForm($entity, $id);
 
         return array(
             'entity' => $entity,

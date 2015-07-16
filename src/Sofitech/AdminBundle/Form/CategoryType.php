@@ -19,13 +19,15 @@ class CategoryType extends AbstractType
             ->add('name', 'text' , array('label' => 'Intitulé'))
             ->add('description', 'text' , array('label' => 'Déscription'))
             ->add('parentCategory', 'entity',array (
-                'label' => 'Cotegory Mère',
+                'label' => 'Categorie mère',
                 'class' => 'SofitechAdminBundle:Category',
                 'query_builder' => function(EntityRepository $er) {
                     return $er->createQueryBuilder('c')
                         ->where('c.parentCategory IS NULL');
                 },
-                'required' => true))
+                'required' => false,
+                'empty_value' => '',
+                'empty_data'  => null))
             //->add('parentCategory','entity', array('label' => 'Catégorie mère', 'class' => 'SofitechAdminBundle:Category','required' => false,'empty_value' => '','empty_data'  => null))
             //->add('formations')
         ;
