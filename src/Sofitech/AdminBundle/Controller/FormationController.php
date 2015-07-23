@@ -11,6 +11,8 @@ use Sofitech\AdminBundle\Entity\Formation;
 use Sofitech\AdminBundle\Form\FormationType;
 use Sofitech\AdminBundle\Entity\Category;
 use Sofitech\AdminBundle\Entity\CategoryRepository;
+use Doctrine\ORM\EntityRepository;
+
 
 /**
  * Formation controller.
@@ -51,6 +53,7 @@ class FormationController extends Controller
     public function createAction(Request $request)
     {
         $entity = new Formation();
+
         $form = $this->createCreateForm($entity);
         $form->handleRequest($request);
 
@@ -75,12 +78,11 @@ class FormationController extends Controller
      *
      * @return \Symfony\Component\Form\Form The form
      */
-    private function createCreateForm(Formation $entity, $id)
+    private function createCreateForm(Formation $entity)
     {
         $form = $this->createForm(new FormationType(), $entity, array(
             'action' => $this->generateUrl('formation_create'),
             'method' => 'POST',
-            'attr' => array('idCategory' => $id),
         ));
 
         //$form->add('submit', 'submit', array('label' => 'Create'));
@@ -98,7 +100,16 @@ class FormationController extends Controller
     public function newAction($id)
     {
         $entity = new Formation();
-        $form   = $this->createCreateForm($entity, $id);
+        $form   = $this->createCreateForm($entity);
+        $form->add('category', 'entity', array(
+            'label' => 'Categorie',
+            'class' => 'SofitechAdminBundle:Category',
+            'query_builder' => function(EntityRepository $er) use ($id) {
+                return $er->createQueryBuilder('c')
+                    ->where('c.parentCategory = :id')
+                    ->setParameter('id', $id);
+            },
+            'required' => true));
 
         return array(
             'entity' => $entity,

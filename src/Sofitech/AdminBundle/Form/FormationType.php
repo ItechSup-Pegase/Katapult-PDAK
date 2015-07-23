@@ -15,22 +15,19 @@ class FormationType extends AbstractType
      */
     public function buildForm(FormBuilderInterface $builder, array $options)
     {
+
         $builder
-            ->add('categories', 'entity', array(
+        ->add('category', 'entity', array(
                 'label' => 'Categorie',
-                'class' => 'SofitechAdminBundle:Category',
-                'query_builder' => function(EntityRepository $er) use ($options){
-                    return $er->createQueryBuilder('c')
-                        ->where('c.parentCategory = :id')
-                        ->setParameter('id', $options['attr']['idCategory']);
-                },
-                'required' => true))
-            ->add('name')
-            ->add('description')
-            ->add('duration')
-            ->add('program')
-        ;
+                'class' => 'SofitechAdminBundle:Category',))
+        ->add('name')
+        ->add('description')
+        ->add('duration')
+        ->add('program')
+    ;  
+
     }
+
     
     /**
      * @param OptionsResolverInterface $resolver

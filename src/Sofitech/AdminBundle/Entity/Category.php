@@ -39,18 +39,18 @@ class Category
     protected $description;
 
     /**
-     * @ORM\OneToMany(targetEntity="Category", mappedBy="parent")
+     * @ORM\OneToMany(targetEntity="Category", mappedBy="parentCategory")
      **/
     protected $childrenCategory;
 
     /**
-     * @ORM\ManyToOne(targetEntity="Category", inversedBy="children")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="childrenCategory")
      * @ORM\JoinColumn(name="parent_id", referencedColumnName="id")
      **/
     protected $parentCategory;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Formation", mappedBy="categories")
+     * @ORM\OneToMany(targetEntity="Formation", mappedBy="category")
      * cascade={"persist"}
      */
     protected $formations;

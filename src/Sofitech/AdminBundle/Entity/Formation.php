@@ -51,11 +51,10 @@ class Formation
     private $program;
 
     /**
-     * @ORM\ManyToMany(targetEntity="Category", inversedBy="formations",cascade={"persist"}) 
-     * @ORM\JoinTable(name="formations_categories")
+     * @ORM\ManyToOne(targetEntity="Category", inversedBy="formations",cascade={"persist"}) 
      *
      */
-    private $categories;
+    private $category;
 
     public function __construct(){
         $this->categories = new ArrayCollection();
@@ -164,25 +163,25 @@ class Formation
     }
 
     /**
-     * Set categories
+     * Set category
      *
      * @param \stdClass $categories
      * @return Fomation
      */
-    public function setCategories($categories)
+    public function setCategory($category)
     {
-        $this->categories = $categories;
+        $this->category= $category;
 
         return $this;
     }
 
     /**
-     * Get categories
+     * Get category
      *
-     * @return \stdClass 
+     * @return Category 
      */
-    public function getCategories()
+    public function getCategory()
     {
-        return $this->categories;
+        return $this->category;
     }
 }
